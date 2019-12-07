@@ -1,0 +1,46 @@
+body {
+    width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    background-image: url("/images/background1.jpg");
+    background-
+}
+
+p.header {
+    text-align: center;   
+    Font: "Times";
+    font-size: 30px;
+    font-style: normal;
+    background-color: #90dfff;
+}
+
+p.body {
+    text-align: center;
+    Font: "Arial";
+    font-size: 20px;
+    font-style: "italics";
+}
+
+p.subheader {
+    text-align: left;
+    color: red;
+}
+
+p.subbody {
+    text-align: right;
+    color: blue;
+}
+
+.column {
+    float: left;
+    width: 50%;
+}
+
+h1,h2 {
+    text-align: center;
+    color: green;
+}
+
+img1 {
+    border: 6px;
+}
