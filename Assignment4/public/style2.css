@@ -10,7 +10,7 @@ p.header {
     Font: "Times";
     font-size: 30px;
     font-style: normal;
-    background-color: #90dfff;
+    background-color: #3fb6d1;
 }
 
 p.body {
@@ -21,8 +21,9 @@ p.body {
 }
 
 p.subheader {
-    text-align: left;
-    color: red;
+    text-align: center;
+    color: #a83297;
+    font-size: 20px;
 }
 
 p.subbody {
@@ -38,8 +39,4 @@ p.subbody {
 h1,h2 {
     text-align: center;
     color: green;
-}
-
-img1 {
-    border: 6px;
 }
