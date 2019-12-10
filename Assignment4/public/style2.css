@@ -31,11 +31,6 @@ p.subbody {
     color: blue;
 }
 
-.column {
-    float: left;
-    width: 50%;
-}
-
 h1,h2 {
     text-align: center;
     color: green;
