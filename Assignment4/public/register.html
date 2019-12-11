@@ -72,6 +72,7 @@
                 has_errors = true;
             }
 
+            the_color = params.get("color"); // store value in password repeat textbox to the variable the_passwordRepeat 
             //give an alert if there is an error 
             if (has_errors) {
                 alert("Password repeat doesn't match password!");
@@ -103,7 +104,7 @@
 
         // Source: Lab 13 info_server_Ex4.js
         // Source of functions for validation: https://www.w3resource.com/javascript/form/javascript-sample-registration-form-validation.php
-       
+
         // validates to make sure that full name meets requirements 
         function usernameValidation(the_user, return_errors = false) {
             var letters = /^[0-9a-zA-Z]+$/;
@@ -123,7 +124,7 @@
         function passwordValidation(the_password, return_errors = false) {
             errors = []; // assume no errors at first
             if (the_password.length < 6) {
-            // password is has less than 6 characters 
+                // password is has less than 6 characters 
                 errors.push('<font color="black">Password must be at least 6 characters long!</font>')
             }
             return return_errors ? errors : (errors.length == 0);
@@ -165,7 +166,8 @@
     <br>
     <br>
 
- <!-- Source: Lab 14 exercise 4 and Kazman Assignment 1 example (onkeyup)-->
+    <!-- Source: Lab 14 exercise 4 and Kazman Assignment 1 example (onkeyup)-->
+    <!-- Drop down selection source: https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_select-->
     <form name="register" action="" method="POST">
         <input type="text" name="fullname" size="40" placeholder="enter full name (First Name Last Name)"
             onkeyup="checkFullname(this);"><span id="fullname_span"></span><br />
@@ -177,8 +179,20 @@
             id="repeatPassword_span"></span><br />
         <input type="email" name="email" size="40" placeholder="enter email" onkeyup="checkEmail(this);"><span
             id="email_span"></span><br />
+        <select type="color" name="color" >
+            <option value="audi">Select your favorite color</option>
+            <option value="volvo">Red</option>
+            <option value="saab">Orange</option>
+            <option value="opel">Blue</option>
+            <option value="audi">Green</option>
+            <option value="audi">Black</option>
+            <option value="audi">Brown</option>
+        </select>
+        <br>
+        <br>
         <input type="submit" value="Submit" name="registerSubmit"><span id="button_span"></span>
     </form>
+
 
     <br>
     <br>
