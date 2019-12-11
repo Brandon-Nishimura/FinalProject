@@ -119,6 +119,7 @@ app.post("/register.html", function (request, response) {
     users_reg_data[usernameLowerCase].password = POST.password; // store the passoword value into users_reg_data file under password
     users_reg_data[usernameLowerCase].full_name = POST.fullname; // store the full name value into users_reg_data file under full name
     users_reg_data[usernameLowerCase].email = POST.email; // store the email value into users_reg_data file under email
+    users_reg_data[usernameLowerCase].color = POST.color;
 
 
     var output_data = JSON.stringify(users_reg_data); // stringify users_reg_data
