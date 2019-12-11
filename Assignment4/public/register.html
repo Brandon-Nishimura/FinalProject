@@ -1,0 +1,189 @@
+<!-- Author: Kristina Tommee-->
+<!-- Description: This is the register page. Users who don't already have an account my register before going to the invoice-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="products-style.css">
+    <title>Register Page</title>
+
+    <script>
+        // Source: Port Assignment 1 Example 
+        window.onload = function () {
+            let params = (new URL(document.location)).searchParams; // gets query string + form data
+            the_user = params.get("username"); // store value in username textbox to the variable the_user 
+            console.log(the_user);
+            has_errors = false; // initialize variable; assume no errors 
+            if (the_user != null) { // the_user has a value 
+                register.username.value = the_user; // assign the_user value to register form username textbox 
+                if (!usernameValidation(the_user)) {
+                    // username doesn't meet requirements 
+                    has_errors = true;
+                }
+                //give an alert if there is an error
+                if (has_errors) {
+                    alert("Please enter a valid username!");
+                }
+            }
+            the_email = params.get("email"); // store value in email textbox to the variable the_email 
+            console.log(the_email);
+            has_errors = false; // initialize variable; assume no errors 
+            if (the_email != null) { // the_email has a value 
+                register.email.value = the_email; // assign the_email value to register form email textbox 
+                if (!emailValidation(the_email)) {
+                    has_errors = true;
+                }
+                //give an alert if there is an error
+                if (has_errors) {
+                    alert("Please enter a valid email!");
+                }
+            }
+            the_fullname = params.get("fullname"); // store value in full name textbox to the variable the_fullname 
+            console.log(the_fullname)
+            has_errors = false // initialize variable; assume no errors 
+            if (the_fullname != null) { // the_fullname has a value 
+                register.fullname.value = the_fullname; // assign the_fullname value to register form full name textbox 
+                if (!fullnameValidation(the_fullname)) {
+                    has_errors = true;
+                }
+                //give an alert if there is an error
+                if (has_errors) {
+                    alert("Please enter a valid full name!");
+                }
+            }
+            the_password = params.get("password"); // store value in password textbox to the variable the_password 
+            has_errors = false; // initialize variable; assume no errors 
+            if (!passwordValidation(the_password)) {
+                has_errors = true;
+            }
+            //give an alert if there is an error 
+            if (has_errors) {
+                alert("Please enter a valid password!");
+            }
+
+            the_passwordRepeat = params.get("repeatPassword"); // store value in password repeat textbox to the variable the_passwordRepeat 
+            the_password = params.get("password");
+            has_errors = false; // initialize variable; assume no errors 
+            if (the_passwordRepeat != the_password) {
+                has_errors = true;
+            }
+
+            //give an alert if there is an error 
+            if (has_errors) {
+                alert("Password repeat doesn't match password!");
+            }
+
+            // change the value of the registerSubmit button to continue when the page reloads
+            register.registerSubmit.value = "Continue";
+
+        }
+
+        // Source: Lab 13 order_page_Ex4.html
+        // Checking the values of the textbox and placing the errors using the span
+        function checkUsername(theTextbox) {
+            errs = usernameValidation(theTextbox.value, true); // don't want a boolean; want the actual errors array
+            document.getElementById(theTextbox.name + '_span').innerHTML = errs.join(", "); // get the errors array and turn it into a string
+        }
+        function checkPassword(theTextbox) {
+            errs = passwordValidation(theTextbox.value, true); // don't want a boolean; want the actual errors array
+            document.getElementById(theTextbox.name + '_span').innerHTML = errs.join(", "); // get the errors array and turn it into a string
+        }
+        function checkFullname(theTextbox) {
+            errs = fullnameValidation(theTextbox.value, true); // don't want a boolean; want the actual errors array
+            document.getElementById(theTextbox.name + '_span').innerHTML = errs.join(", "); // get the errors array and turn it into a string
+        }
+        function checkEmail(theTextbox) {
+            errs = emailValidation(theTextbox.value, true); // don't want a boolean; want the actual errors array
+            document.getElementById(theTextbox.name + '_span').innerHTML = errs.join(", "); // get the errors array and turn it into a string
+        }
+
+        // Source: Lab 13 info_server_Ex4.js
+        // Source of functions for validation: https://www.w3resource.com/javascript/form/javascript-sample-registration-form-validation.php
+       
+        // validates to make sure that full name meets requirements 
+        function usernameValidation(the_user, return_errors = false) {
+            var letters = /^[0-9a-zA-Z]+$/;
+            errors = []; // assume no errors at first
+            // check if length is okay 
+            if (the_user.length > 10 || the_user.length < 4) {
+                errors.push('<font color="black">Username must be between 4 and 10 characters long!</font>');
+            }
+            // check if there are only letters and numbers
+            if (!the_user.match(letters)) {
+                // if contain characters that are not letters = error 
+                errors.push('<font color="black">Username can only contain alphanumeric characters only!</font>');
+            }
+            return return_errors ? errors : (errors.length == 0);
+        }
+        // validates password; it should be of length 6 characters or greater). If not, it displays an alert.
+        function passwordValidation(the_password, return_errors = false) {
+            errors = []; // assume no errors at first
+            if (the_password.length < 6) {
+            // password is has less than 6 characters 
+                errors.push('<font color="black">Password must be at least 6 characters long!</font>')
+            }
+            return return_errors ? errors : (errors.length == 0);
+        }
+
+        // validate fullname checks whether user name input field is provided with alphabates characters. If not, it displays an alert 
+        function fullnameValidation(the_Fullname, return_errors = false) {
+            errors = []; // assume no errors at first
+            var letters = /^[A-Za-z ]+$/;
+            if (!the_Fullname.match(letters)) {
+                // full name includes a character that is not defined in the letters variable 
+                errors.push('<font color="black">Username can only contain letters</font>');
+            }
+            if (the_Fullname.length > 30) {
+                // full name has more than 30 characters 
+                errors.push('<font color="black">Full name must be less than 30 characters long!</font>');
+            }
+            return return_errors ? errors : (errors.length == 0);
+        }
+        // validate email format
+        function emailValidation(the_email, return_errors = false) {
+            errors = []; // assume no errors at first
+            var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if (!the_email.match(mailformat)) {
+                // email is not written in the right format
+                errors.push('<font color="black">You have entered an invalid email address!</font>');
+            }
+            return return_errors ? errors : (errors.length == 0);
+        }
+    </script>
+
+</head>
+
+<body>
+    <h1>...Register Page...</h1>
+    <!-- Takes you to the login page -->
+    <b><a href="login.html">Already have an account? Click here to login!</a></b>
+    <br>
+    <br>
+    <br>
+
+ <!-- Source: Lab 14 exercise 4 and Kazman Assignment 1 example (onkeyup)-->
+    <form name="register" action="" method="POST">
+        <input type="text" name="fullname" size="40" placeholder="enter full name (First Name Last Name)"
+            onkeyup="checkFullname(this);"><span id="fullname_span"></span><br />
+        <input type="text" name="username" size="40" placeholder="enter username" onkeyup="checkUsername(this);"><span
+            id="username_span"></span><br />
+        <input type="password" name="password" size="40" placeholder="enter password"
+            onkeyup="checkPassword(this);"><span id="password_span"></span><br />
+        <input type="password" name="repeatPassword" size="40" placeholder="enter password again"><span
+            id="repeatPassword_span"></span><br />
+        <input type="email" name="email" size="40" placeholder="enter email" onkeyup="checkEmail(this);"><span
+            id="email_span"></span><br />
+        <input type="submit" value="Submit" name="registerSubmit"><span id="button_span"></span>
+    </form>
+
+    <br>
+    <br>
+    <br>
+
+</body>
+
+</html>
