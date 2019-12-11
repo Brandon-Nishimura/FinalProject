@@ -1,0 +1,45 @@
+<!-- Author: Kristina Tommee-->
+<!-- Description: This is the login page for my shop. Before users can go to the invoice page, they must login-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="products-style.css">
+</head>
+
+<body>
+    <h1>...Login Page...</h1>
+    <!-- Takes you to the register page -->
+    <b><a href="register.html">Don't have an account? Click here to register!</a></b>
+    <br>
+    <br>
+    <!-- Source: Lab 14 exercise 4 -->
+    <form name="login" action="" method="POST">
+        <input type="text" name="username" size="40" placeholder="enter username"><br />
+        <input type="password" name="password" size="40" placeholder="enter password"><br />
+        <input type="submit" value="Login" name="submit">
+    </form>
+
+    <script>
+        // Source: Port Assignment 1 example 
+        let params = (new URL(document.location)).searchParams;
+        the_user = params.get("username"); // get value of user 
+        if (the_user != null) {
+            // there is a value for the_user
+            login.username.value = the_user;
+            // store the value for the_user in the login form in the username textbox
+        }
+    </script>
+
+    <br>
+    <br>
+    <br>
+
+</body>
+
+</html>
