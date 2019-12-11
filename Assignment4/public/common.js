@@ -43,4 +43,10 @@ footer.innerHTML = (`
             F: (808) 322-9908
             <br>
             E: mypianostudio@gmail.com
+            <br>
+            Operating Hours: 
+            <br>
+            Monday - Friday: 9:30am - 6:00pm
+            Saturday: 8:30am - 7:30pm
+            Sunday: Closed 
         </p>`);
