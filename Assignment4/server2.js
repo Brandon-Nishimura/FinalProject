@@ -9,7 +9,7 @@ var querystring = require('querystring');
 var fs = require('fs'); // require readFileSync;
 
 // Source: Lab 14 exercise 4 
-var filename = "user_registration_info.json"; // define file name
+var filename = "user_reg_data.json"; // define file name
 var quantityqstring = "";
 var loginqstring = "";
 var registerqstring = "";
@@ -41,7 +41,7 @@ app.post("/login.html", function (request, response) {
     var username = POST.username; // store what was typed in the username textbox in the variable username
     var usernameLowerCase = username.toLowerCase(); // convert what was typed in the username textbox to all lower case and store in a variable 
     var usernameqstring = "&user=" + username; // creates query string for username
-    if (users_reg_data[usernameLowerCase] != undefined) // username exists in user registration data
+    if (users_reg_data[usernameLowerCase] != undefined) // check if username exists in user registration data
     {
       if (POST.password == users_reg_data[usernameLowerCase].password) // the password correctly corresponds to the defined username in the registration data
       {
