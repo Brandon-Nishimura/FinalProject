@@ -15,28 +15,10 @@
 </head>
 
 <body>
-    <div align="left" style="background-color:lightblue">
-        <h1>My Piano Studio</h1>
-        <h2><strong>Serving Hawaii Since 2001</strong></h2>
-            <div align="right">
-                    <a href="index.html"><img src="/images/logo.png"></a>
-            </div>
-    </div>
-    </div>
-    <div align="center">
-        <a href="/blog.html" class="button1">Blog</a>
-        <a href="/gallery.html" class="button1">Gallery</a>
-        <a href="/lessons.html" class="button1">Lessons</a>
-        <a href="/testimonials.html" class="button1">Testimonials</a>
-        <a href="/events.html" class="button1">Events</a>
-        <a href="/aboutus.html" class="button1">About Us</a>
-        <a href="/contact.html" class="button1">Contact</a>
-    </div>
-    <br>
-    <div align="right" style="background-color:paleturquoise">
-        <button type="button">Login</button>
-        <button type="button">Register</button>
-    </div>
+<script>
+genheader();    
+</script>
+
 
     <!-- Makes a link to the product_display page when you click the image  -->
     <a href="index.html"><img src="/images/logo.png"
@@ -58,5 +40,17 @@
     </div>
 
 </body>
+
+<!--Source our server javascript! We need it for our header!-->
+
+<script src="./header.js">
+    if (fs.existsSync(filename)) {
+  console.log('File ' + filename + "found!")
+}
+else {
+  console.log('File ' + filename + " doesnt exist!");
+}
+</script>
+
 
 </html>
