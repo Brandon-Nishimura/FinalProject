@@ -13,6 +13,18 @@ p.header {
     background-color: #3fb6d1;
 }
 
+p.caption {
+    text-align: center;   
+    Font: "Times";
+    font-size: 18px;
+    font-style: normal;
+    background-color: white;
+    width: 350px;
+    height: 20px; 
+    border-radius: 5px 20px 5px;
+    
+}
+
 p.body {
     text-align: center;
     Font: "Arial";
@@ -34,4 +46,20 @@ p.subbody {
 h1,h2 {
     text-align: center;
     color: green;
+}
+
+
+.boxed {
+    border: 1px solid green;
+    width: 350px;
+    height: 100px; 
+    background-color: rgb(240, 162, 188);
+    border-radius: 25px;
+    padding: 20px;
+    align-self: center;
+    font-size: 20px;
+  }
+
+img{
+    border-radius: 50%;
 }
