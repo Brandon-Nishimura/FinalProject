@@ -5,7 +5,6 @@
 var express = require('express');
 var app = express();
 var myParser = require("body-parser");
-var products = require("./public/products.json");
 var querystring = require('querystring');
 var fs = require('fs'); // require readFileSync;
 
@@ -184,57 +183,6 @@ function fullnameValidation(fullName, return_errors = false) {
   return return_errors ? errors : (errors.length == 0);
 }
 
-
-// Source: Port Assignment 1 Example + Lab 13 info_server_Ex4.js
-app.post("/product_display.html", function (request, response) {
-  // Code to handle POST from products display
-  let POST = request.body;
-  has_errors = false;
-  total_qty = 0;
-  quantities = [];
-  // loop through products.js array
-  for (i = 0; i < products.length; i++) {
-    console.log("POST=" + POST[`quantity${i}`]);
-    if (POST[`quantity${i}`] != undefined) {
-      console.log(typeof (POST[`quantity${i}`]));
-      a_qty = Number(POST[`quantity${i}`]);
-      quantities[i] = a_qty;
-
-      if (!isNonNegInt(a_qty)) {
-        has_errors = true; // if there is invalid quantity
-      }
-      else {
-        total_qty += a_qty; // if there is a valid quantity
-      }
-    }
-  }
-  qstring = querystring.stringify(POST); // post string 
-  console.log("quantity=" + total_qty);
-  if (has_errors) {
-    response.redirect(`/product_display.html?${qstring}`); // send back to product display page 
-  }
-  else if (total_qty == 0) { //no quantities chosen
-    response.redirect(`/product_display.html?${qstring}`); // send back to product display page
-  }
-  else { 
-    // redirecting to login page when quantities are valid
-    quantityqstring = qstring;
-    response.redirect(`/login.html`);
-
-  };
-});
-
-
-// Source: Lab 13 info_server_Ex4.js
-// Validates to make sure that the string is a non-negative integer
-function isNonNegInt(q, returnErrors = false) {
-  errors = []; // assume no errors at first
-  if (Number(q) != q) errors.push('Not a number!'); // Check if string is a number value
-  if (q < 0) errors.push('Negative value!'); // Check if it is non-negative
-  if (parseInt(q) != q) errors.push('Not an integer!'); // Check that it is an integer
-  return returnErrors ? errors : (errors.length == 0);
-
-}
 
 app.use(express.static('./public'));
 app.listen(8080, () => console.log(`listening on port 8080`));
