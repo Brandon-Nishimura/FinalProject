@@ -13,6 +13,7 @@ header.innerHTML = (`
     </div>
     <div align="center">
         <a href="/index.html" class="button1">Home</a>
+        <a href="/schedule.html" class="button1">Schedule</a>
         <a href="/blog.html" class="button1">Blog</a>
         <a href="/gallery.html" class="button1">Gallery</a>
         <a href="/lessons.html" class="button1">Lessons</a>
