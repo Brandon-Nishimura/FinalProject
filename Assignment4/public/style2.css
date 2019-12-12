@@ -127,3 +127,14 @@ img{
 .break {
     margin-top: 400px;
 }
+
+.caption1 {
+    text-align: center;
+    Font: "Times";
+    font-size: 18px;
+    font-style: normal;
+    background-color: white;
+    width: 350px;
+    height: 20px; 
+    border-radius: 5px 20px 5px;
+}
