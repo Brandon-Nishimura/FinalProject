@@ -86,7 +86,41 @@
         <p class="caption">- Karen S., Aiea, HI</p>
     </div>
 
-    <div class="container">
+    <br>
+    <br>
+
+    <!-- Source: Lab 14 exercise 4 and Kazman Assignment 1 example (onkeyup)-->
+    <!--  Source: contact page and css: https://www.w3schools.com/howto/howto_css_contact_form.asp-->
+     <!--Source: max length in textbox https://www.tutorialspoint.com/How-to-limit-the-number-of-characters-entered-in-a-textarea-in-an-HTML-form-->
+    <div class= "container">
+    <form name="register" action="" method="POST">
+        <div style="text-align:center">
+            <h2>Tell us about your own experience!</h2>
+        </div>
+        <br>
+        <input type="text" name="fullname" size="40" placeholder="Enter the name you want shown"><span id="fullname_span"></span><br />
+        <input type="text" name="username" size="40" placeholder="Enter username"><span id="username_span"></span><br />
+        <textarea type="text" id="testimonial" name="testimonial" placeholder="Write your testimonial here!" style="height:200px;" max="10"></textarea>
+        <input type="submit" value="Submit" name="registerSubmit"><span id="button_span"></span>
+    </form>
+</div>
+
+
+
+    <div class="break"></div>
+    <footer id="main-footer"></footer>
+
+    <script type="text/javascript" src="common.js"></script>
+
+
+</body>
+
+</html>
+
+<script>
+    /*
+    Source: https://www.w3schools.com/howto/howto_css_contact_form.asp
+        <div class="container">
         <div style="text-align:center">
             <h2>Tell us about your own experience!</h2>
         </div>
@@ -113,13 +147,5 @@
             </div>
         </div>
     </div>
-
-    <div class="break"></div>
-    <footer id="main-footer"></footer>
-
-    <script type="text/javascript" src="common.js"></script>
-
-
-</body>
-
-</html>
+    */
+</script>
