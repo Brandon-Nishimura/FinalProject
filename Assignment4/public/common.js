@@ -23,8 +23,8 @@ header.innerHTML = (`
     </div>
     <br>
     <div align="right" style="background-color:paleturquoise">
-        <a href="/login" class="button2">Login</a>
-        <a href="/register" class="button2">Register</a>
+        <a href="/login.html" class="button2">Login</a>
+        <a href="/register.html" class="button2">Register</a>
     </div>
     `);
 
