@@ -31,9 +31,9 @@ header.innerHTML = (`
 var footer = document.getElementById('main-footer');
 console.log(footer);
 footer.innerHTML = (`
-    <div style="background-color: lightblue" align="left">
-        <h2>My Piano Studio</h2>
-        <p> 691 Auahi Street
+    <div class="mainfooter" style="background-color: lightblue";>
+        <h2>An Octave Higher</h2>
+            691 Auahi Street
             <br>
             Honolulu, HI 96813
 
@@ -42,11 +42,11 @@ footer.innerHTML = (`
             <br>
             F: (808) 322-9908
             <br>
-            E: mypianostudio@gmail.com
+            E: anoctavehigher@gmail.com
             <br>
             Operating Hours: 
             <br>
             Monday - Friday: 9:30am - 6:00pm
             Saturday: 8:30am - 7:30pm
             Sunday: Closed 
-        </p>`);
+        `);
