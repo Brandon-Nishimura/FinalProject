@@ -1,8 +1,9 @@
 body {
     width: 800px;
-    margin: 0 auto;
+    margin: auto;
     text-align: center;
-    background-image: url("/images/background1.jpg");
+    background-color: black;
+    background-image: url("/images/background2.jpg");
 }
 
 p.header {
