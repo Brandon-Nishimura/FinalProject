@@ -45,7 +45,7 @@ app.post("/login.html", function (request, response) {
     {
       if (POST.password == users_reg_data[usernameLowerCase].password) // the password correctly corresponds to the defined username in the registration data
       {
-        response.redirect("product_invoice.html?" + quantityqstring + usernameqstring); // username and password match the user reg data; send to invoice with quantity and username info stored in query string
+        response.redirect("index.html"); // username and password match the user reg data; send to invoice with quantity and username info stored in query string
         return;
       }
       else { 
@@ -73,6 +73,9 @@ app.post("/register.html", function (request, response) {
   var email = POST.email; // store what was typed in the email textbox in the variable email
   var fullname = POST.fullname; // store what was typed in the fullname textbox in the variable fullname
   var usernameqstring = "&user=" + username; // creates query string for username
+  var d = Date();
+  a = d.toString();
+
 
   is_valid = true; // initializing variable is_valid
   // check if username is valid
@@ -120,6 +123,7 @@ app.post("/register.html", function (request, response) {
     users_reg_data[usernameLowerCase].full_name = POST.fullname; // store the full name value into users_reg_data file under full name
     users_reg_data[usernameLowerCase].email = POST.email; // store the email value into users_reg_data file under email
     users_reg_data[usernameLowerCase].color = POST.color;
+    users_reg_data[usernameLowerCase].registrationDate = a;
 
 
     var output_data = JSON.stringify(users_reg_data); // stringify users_reg_data
