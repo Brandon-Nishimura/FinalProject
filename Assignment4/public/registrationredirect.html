@@ -42,7 +42,7 @@ if they successfully registered. This page is a delayed redirect page that will 
 
         // Source: Kazman Assignment 1 example
         // Source of delayed redirect: https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_redirect
-        outStr = `<meta http-equiv="Refresh" content="5;url=/product_invoice.html?${quantityqstring}${usernameqstring}">`;
+        outStr = `<meta http-equiv="Refresh" content="4;url=/index.html">`;
         document.write(outStr);
         // send the user to the invoice page with quantity and username info stored in query string; will automatically refresh and go to invoice page in 5 seconds
     </script>
@@ -57,9 +57,9 @@ if they successfully registered. This page is a delayed redirect page that will 
     <br>
     <br>
     <h2>Successful Registration!</h2>
-    
+    <p>You will be redirected to the scheduling page to schedule a date for a free meet and greet session!</p>
     <p>If you see this message for more than 5 seconds, please click on the link below!</p>
-    <p><a href="/product_invoice.html?${quantityqstring}${usernameqstring}">Invoice Page</a></p>
+    <p><a href="/index.html">Invoice Page</a></p>
     <br>
     <br>
     <br>

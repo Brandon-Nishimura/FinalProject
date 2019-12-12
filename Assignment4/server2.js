@@ -125,7 +125,7 @@ app.post("/register.html", function (request, response) {
     var output_data = JSON.stringify(users_reg_data); // stringify users_reg_data
     fs.writeFileSync(filename, output_data, "utf-8");
 
-    response.redirect("/registrationredirect.html?" + quantityqstring + usernameqstring); // registration information is valid; send to invoice with quantity and username info stored in query string
+    response.redirect("/registrationredirect.html"); // registration information is valid; send to invoice with quantity and username info stored in query string
     return;
   }
   else{
