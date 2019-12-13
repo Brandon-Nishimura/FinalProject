@@ -37,7 +37,6 @@ footer.innerHTML = (`
             691 Auahi Street
             <br>
             Honolulu, HI 96813
-
             <br>
             P: (808) 223-9872
             <br>
