@@ -21,7 +21,7 @@ var testimonialname = "testimonial_data.json";
 var raw_data = fs.readFileSync(filename, 'utf-8');
 var users_reg_data = JSON.parse(raw_data);
 var testimonial_raw_data = fs.readFileSync(testimonialname, 'utf-8');
-var tesstimonial_data = JSON.parse(testimonial_raw_data);
+var testimonial_data = JSON.parse(testimonial_raw_data);
 
 
 // Source: Lab 14 exercise 4 
@@ -131,9 +131,9 @@ app.post("/register.html", function (request, response) {
 
 
         var output_data = JSON.stringify(users_reg_data); // stringify users_reg_data
-        fs.writeFileSync(filename, output_data, "utf-8");
+        fs.writeFileSync(testimonialname, output_data, "utf-8");
 
-        response.redirect("/registrationredirect.html"); // registration information is valid; send to invoice with quantity and username info stored in query string
+        response.redirect("index.html"); // registration information is valid; send to invoice with quantity and username info stored in query string
         return;
     }
     else {
@@ -212,11 +212,6 @@ app.post("/testimonial3.html", function (request, response) {
         {
             testimonial_data[usernameLowerCase] = {};  // create empty object 
             testimonial_data[usernameLowerCase].username = usernameLowerCase; // store the usernameLowerCase value into users_reg_data file under username
-            testimonial_data[usernameLowerCase].password = POST.password; // store the passoword value into users_reg_data file under password
-            testimonial_data[usernameLowerCase].full_name = POST.fullname; // store the full name value into users_reg_data file under full name
-            testimonial_data[usernameLowerCase].email = POST.email; // store the email value into users_reg_data file under email
-            testimonial_data[usernameLowerCase].color = POST.color;
-            testimonial_data[usernameLowerCase].registrationDate = a;
 
 
             var output_data = JSON.stringify(testimonial_data); // stringify users_reg_data
