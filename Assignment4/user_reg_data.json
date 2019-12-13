@@ -10,7 +10,8 @@
         "full_name": "monday student",
         "email": "monday",
         "color": "#e66465",
-        "date": "Wed Dec 11 2019 15:57:31 GMT-1000 (Hawaii-Aleutian Standard Time)"
+        "date": "Wed Dec 11 2019 15:57:31 GMT-1000 (Hawaii-Aleutian Standard Time)",
+        "day": "monday"
     },
     "thursday": {
         "username": "thursday",
@@ -44,5 +45,21 @@
         "email": "a@gmail.com",
         "color": "#e66465",
         "registrationDate": "Fri Dec 13 2019 11:55:33 GMT-1000 (Hawaii-Aleutian Standard Time)"
+    },
+    "saturday": {
+        "username": "saturday",
+        "password": "saturday",
+        "full_name": "SaturdayStudent",
+        "email": "saturday@gmail.com",
+        "color": "#e66465",
+        "registrationDate": "Fri Dec 13 2019 12:17:11 GMT-1000 (Hawaii-Aleutian Standard Time)"
+    },
+    "studenta": {
+        "username": "studenta",
+        "password": "student",
+        "full_name": "StudentA",
+        "email": "student@hawaii.edu",
+        "color": "#e66465",
+        "registrationDate": "Fri Dec 13 2019 12:45:52 GMT-1000 (Hawaii-Aleutian Standard Time)"
     }
 }

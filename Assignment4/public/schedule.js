@@ -1,6 +1,12 @@
 /* Created by Brandon Nishimura
 Purpose: Create the schedule page!*/
 
+function giveuser () {
+    if (typeof request.cookies != undefined) {
+        console.log(users_reg_data[usernameLowerCase].username + "logged in!")
+    }
+}
+
 // Test example day.
 
 var userAday = "friday"
