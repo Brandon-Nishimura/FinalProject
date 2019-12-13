@@ -183,7 +183,7 @@ function emailValidation(email, return_errors = false) {
 }
 // validate fullname checks whether user name input field is provided with alphabates characters. If not, it displays an alert 
 function fullnameValidation(fullName, return_errors = false) {
-    var letters = /^[A-Za-z]+$/;
+    var letters = /^[A-Za-z ]+$/;
     if (!fullName.match(letters)) {
         // full name includes character not defined in the variable letters
         errors.push('<font color="black">Username can only contain letters</font>');
@@ -193,14 +193,14 @@ function fullnameValidation(fullName, return_errors = false) {
 }
 
 
-app.post("/testimonials3.html", function (request, response) {
+app.post("/testimonials.html", function (request, response) {
     let POST = request.body; // grab body of request and save it in POST
     qstring = querystring.stringify(POST); // stringify or convert POST (login info) to a string
     testimonialqstring = qstring;
 
     if (typeof POST['submit'] == undefined) {
         // check if the submit button was pressed.
-        response.redirect("testimonials3.html");
+        response.redirect("testimonials.html");
         // redirect back to testimonial page if nothing was submitted 
     } else {
         // user submitted testimonial. test if user is logged in
