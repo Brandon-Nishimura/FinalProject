@@ -23,7 +23,6 @@ var users_reg_data = JSON.parse(raw_data);
 var testimonial_raw_data = fs.readFileSync(testimonialname, 'utf-8');
 var testimonial_data = JSON.parse(testimonial_raw_data);
 
-
 // Source: Lab 14 exercise 4 
 app.use(myParser.urlencoded({ extended: true })); // use myparser 
 
@@ -79,7 +78,6 @@ app.post("/register.html", function (request, response) {
     var usernameqstring = "&user=" + username; // creates query string for username
     var d = Date();
     a = d.toString();
-
 
     is_valid = true; // initializing variable is_valid
     // check if username is valid
