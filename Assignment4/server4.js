@@ -181,7 +181,7 @@ function emailValidation(email, return_errors = false) {
 }
 // validate fullname checks whether user name input field is provided with alphabates characters. If not, it displays an alert 
 function fullnameValidation(fullName, return_errors = false) {
-    var letters = /^[A-Za-z]+$/;
+    var letters = /^[A-Za-z ]+$/;
     if (!fullName.match(letters)) {
         // full name includes character not defined in the variable letters
         errors.push('<font color="black">Username can only contain letters</font>');
@@ -191,14 +191,14 @@ function fullnameValidation(fullName, return_errors = false) {
 }
 
 
-app.post("/testimonial3.html", function (request, response) {
+app.post("/testimonials.html", function (request, response) {
     let POST = request.body; // grab body of request and save it in POST
     qstring = querystring.stringify(POST); // stringify or convert POST (login info) to a string
     testimonialqstring = qstring;
 
     if (typeof POST['submit'] == undefined) {
         // check if the submit button was pressed.
-        response.redirect("testimonial3.html");
+        response.redirect("testimonials.html");
         // redirect back to testimonial page if nothing was submitted 
     } else {
         // user submitted testimonial. test if user is logged in
@@ -210,10 +210,13 @@ app.post("/testimonial3.html", function (request, response) {
         {
             testimonial_data[usernameLowerCase] = {};  // create empty object 
             testimonial_data[usernameLowerCase].username = usernameLowerCase; // store the usernameLowerCase value into users_reg_data file under username
+            testimonial_data[usernameLowerCase].fullname = POST.fullname; // store the usernameLowerCase value into users_reg_data file under username
+            testimonial_data[usernameLowerCase].testimonial = POST.testimonial; // store the usernameLowerCase value into users_reg_data file under username
+
 
 
             var output_data = JSON.stringify(testimonial_data); // stringify users_reg_data
-            fs.writeFileSync(filename, output_data, "utf-8");
+            fs.writeFileSync(testimonialname, output_data, "utf-8");
 
             response.redirect("/registrationredirect.html"); // registration information is valid; send to invoice with quantity and username info stored in query string
             return;
