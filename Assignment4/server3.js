@@ -128,7 +128,6 @@ app.post("/register.html", function (request, response) {
     users_reg_data[usernameLowerCase].registrationDate = a;
     // Add cookie for use on server
     response.cookie('userID', usernameLowerCase);
-  
 
   /*  console.log("Cookie Set!");
     if (typeof request.cookies != undefined) {
