@@ -19,6 +19,7 @@ var testimonialname = "testimonial_data.json";
 // read, parse, output the contents from user_registration_info.json
 var raw_data = fs.readFileSync(filename, 'utf-8');
 var users_reg_data = JSON.parse(raw_data);
+console.log(users_reg_data.itm352.color)
 var testimonial_raw_data = fs.readFileSync(testimonialname, 'utf-8');
 var testimonial_data = JSON.parse(testimonial_raw_data);
 
@@ -251,6 +252,10 @@ function testimonialValidation(testimonial, return_errors = false) {
   }
   return return_errors ? errors : (errors.length == 0);
 }
+
+
+// function to get username from users reg data
+
 
 
 app.use(express.static('./public'));
