@@ -31,10 +31,10 @@ app.use(myParser.urlencoded({ extended: true })); // use myparser
 app.post("/login.html", function (request, response) {
   let POST = request.body; // grab body of request and save it in POST
   qstring = querystring.stringify(POST); // stringify or convert POST (login info) to a string
-  loginqstring = qstring; 
+  loginqstring = qstring;
 
   if (typeof POST['submit'] == undefined) {
-// check if the submit button was pressed.
+    // check if the submit button was pressed.
     response.redirect("login.html");
     // redirect back to login page if nothing was submitted 
   } else {
@@ -51,7 +51,7 @@ app.post("/login.html", function (request, response) {
         response.redirect("index.html"); // username and password match the user reg data; send to invoice with quantity and username info stored in query string
         return;
       }
-      else { 
+      else {
         // username exists in user registration data but password is incorrect
 
         response.redirect("loginredirect2.html?" + loginqstring); // send to a redirect page along with username info saved in query string
@@ -102,10 +102,10 @@ app.post("/register.html", function (request, response) {
     is_valid = false; // full name is not valid 
 
   // Now check if there were any errors
-  if (!is_valid) { 
+  if (!is_valid) {
     // there are errors
     qstring = querystring.stringify(POST); // stringify or convert POST (registration info) to a string
-    registerqstring = qstring; 
+    registerqstring = qstring;
     response.redirect("register.html?" + registerqstring); // there are errors, send back to the register page with the register info stored in query string
     return;
   }
@@ -115,7 +115,7 @@ app.post("/register.html", function (request, response) {
     qstring = querystring.stringify(POST); // stringify or convert POST (registration info) to a string
     registerqstring = qstring;
     response.redirect("register.html?" + registerqstring); // send back to register page with register info stored in query string
-    return; 
+    return;
   }
 
   if (typeof users_reg_data[usernameLowerCase] == 'undefined') // username doesn't exist in user registration data
@@ -135,7 +135,7 @@ app.post("/register.html", function (request, response) {
     response.redirect("/registrationredirect.html"); // registration information is valid; send to invoice with quantity and username info stored in query string
     return;
   }
-  else{
+  else {
     response.redirect("redirect.html"); // username already taken; send user to redirect.html page 
   }
 });
@@ -148,9 +148,9 @@ function usernameValidation(usernameLowerCase, return_errors = false) {
   var letters = /^[0-9a-zA-Z]+$/; // allowable characters 
   errors = []; // assume no errors at first
   // check if length is okay; length must be between 4 and 10 characters
-  if (usernameLowerCase.length > 10 || usernameLowerCase.length < 4) { 
+  if (usernameLowerCase.length > 10 || usernameLowerCase.length < 4) {
     // username doesn't doesn't meet requirements 
-    errors.push('<font color="black">Username must be between 4 and 10 characters long!</font>'); 
+    errors.push('<font color="black">Username must be between 4 and 10 characters long!</font>');
   }
   // check if there are only letters and numbers; check if matches the variable letters
   if (!usernameLowerCase.match(letters)) {
@@ -192,42 +192,65 @@ function fullnameValidation(fullName, return_errors = false) {
 }
 
 app.post("/testimonials.html", function (request, response) {
-    let POST = request.body; // grab body of request and save it in POST
-    qstring = querystring.stringify(POST); // stringify or convert POST (login info) to a string
-    testimonialqstring = qstring;
+  let POST = request.body; // grab body of request and save it in POST
+  qstring = querystring.stringify(POST); // stringify or convert POST (login info) to a string
+  testimonialqstring = qstring;
+  var testimonial = POST.testimonial;
 
-    if (typeof POST['submit'] == undefined) {
-        // check if the submit button was pressed.
-        response.redirect("testimonials.html");
-        // redirect back to testimonial page if nothing was submitted 
-    } else {
-        // user submitted testimonial. test if user is logged in
-
-        //check if valid username exists
-        var username = POST.username; // store what was typed in the username textbox in the variable username
-        var usernameLowerCase = username.toLowerCase(); // convert what was typed in the username textbox to all lower case and store in a variable 
-        if (users_reg_data[usernameLowerCase] != undefined) // check if username exists in user registration data
-        {
-            testimonial_data[usernameLowerCase] = {};  // create empty object 
-            testimonial_data[usernameLowerCase].username = usernameLowerCase; // store the usernameLowerCase value into users_reg_data file under username
-            testimonial_data[usernameLowerCase].fullname = POST.fullname; // store the usernameLowerCase value into users_reg_data file under username
-            testimonial_data[usernameLowerCase].testimonial = POST.testimonial; // store the usernameLowerCase value into users_reg_data file under username
-
-
-
-            var output_data = JSON.stringify(testimonial_data); // stringify users_reg_data
-            fs.writeFileSync(testimonialname, output_data, "utf-8");
-
-            response.redirect("/registrationredirect.html"); // registration information is valid; send to invoice with quantity and username info stored in query string
-            return;
-        }
-        else {
-            // username doesn't exist 
-            console.log("username doesn't exist");
-        }
-        response.redirect("testimonialredirect1.html?" + testimonialqstring); // send to redirect page along with testimonial info saved in query string
+  if (typeof POST['submit'] == undefined) {
+    // check if the submit button was pressed.
+    response.redirect("testimonials.html");
+    // redirect back to testimonial page if nothing was submitted 
+  } else {
+    is_valid = true; // initializing variable is_valid
+    // check if username is valid
+    errs_array = testimonialValidation(testimonial, true);
+    if (errs_array.length != 0) // there are errors in the username
+      is_valid = false; // username is not valid 
+    if (!is_valid) {
+      // there are errors
+      qstring = querystring.stringify(POST); // stringify or convert POST (registration info) to a string
+      registerqstring = qstring;
+      response.redirect("/testimonialredirect3.html?" + testimonialqstring); // there are errors, send back to the register page with the register info stored in query string
+      return;
     }
+    // user submitted testimonial. test if user is logged in
+
+    //check if valid username exists
+    var username = POST.username; // store what was typed in the username textbox in the variable username
+    var usernameLowerCase = username.toLowerCase(); // convert what was typed in the username textbox to all lower case and store in a variable 
+    if (users_reg_data[usernameLowerCase] != undefined) // check if username exists in user registration data
+    {
+      testimonial_data[usernameLowerCase] = {};  // create empty object 
+      testimonial_data[usernameLowerCase].username = usernameLowerCase; // store the usernameLowerCase value into users_reg_data file under username
+      testimonial_data[usernameLowerCase].fullname = POST.fullname; // store the usernameLowerCase value into users_reg_data file under username
+      testimonial_data[usernameLowerCase].testimonial = POST.testimonial; // store the usernameLowerCase value into users_reg_data file under username
+
+
+
+      var output_data = JSON.stringify(testimonial_data); // stringify users_reg_data
+      fs.writeFileSync(testimonialname, output_data, "utf-8");
+
+      response.redirect("/testimonialredirect1.html"); // registration information is valid; send to invoice with quantity and username info stored in query string
+      return;
+    }
+    else {
+      // username doesn't exist 
+      console.log("username doesn't exist");
+    }
+    response.redirect("/testimonialredirect2.html?" + testimonialqstring); // send to redirect page along with testimonial info saved in query string
+  }
 });
+
+function testimonialValidation(testimonial, return_errors = false) {
+  errors = []; // assume no errors at first
+  // check if length is okay; length must be between 4 and 10 characters
+  if (testimonial.length == 0 ){
+    // username doesn't doesn't meet requirements 
+    errors.push('<font color="black">Username must be between 4 and 10 characters long!</font>');
+  }
+  return return_errors ? errors : (errors.length == 0);
+}
 
 
 app.use(express.static('./public'));
