@@ -8,7 +8,7 @@ var header = document.getElementById('main-header');
 console.log(header);
 header.innerHTML = (`
 <div class="header">
-        <h1>My Piano Studio</h1>
+        <h1>An Octave Higher</h1>
         <h2><strong>Serving Hawaii Since 2001</strong></h2>
     </div>
     <div align="center">
