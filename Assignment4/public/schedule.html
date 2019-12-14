@@ -23,9 +23,17 @@
     <div class="schedule">
         
         <h1>Welcome, [TEMPORARYNAME]
+
             
-        <br>
-        <script>
+            <script>
+                    if (typeof document.cookie.userID != undefined) {
+                        console.log("Test worked!")
+                        console.log(users_reg_data[usernameLowerCase].username + "logged in!");
+                        console.log("Cookies " + request.cookies);
+                        console.log(users_reg_data[usernameLowerCase].username);
+            }
+                    
+
         document.write(nextLessonString);
         </script>
 
