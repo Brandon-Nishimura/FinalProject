@@ -1,15 +1,23 @@
 /* Created by Brandon Nishimura
 Purpose: Create the schedule page!*/
 
-function giveuser () {
-    if (typeof request.cookies != undefined) {
-        console.log(users_reg_data[usernameLowerCase].username + "logged in!")
-    }
-}
+
+
+console.log(document.cookie);
+var userOnly = document.cookie.substr(7); // Removes the first seven letters (aka userID=)
+console.log(userOnly);
+
+
+
+// Next Lesson String creation!
 
 // Test example day.
 
+
+// Hardcode test variables
 var userAday = "friday"
+var userAcolor = "#e66465"
+
 console.log("userAday: " + userAday)
 
 // Pull the current time so it can be used for our calculations
@@ -63,3 +71,12 @@ if (calcdays == 0) {
 
 console.log(nextLessonString);
 
+// Create the welcome line!
+
+// Generate the next four days!
+
+
+
+
+
+// var nextWeekString =

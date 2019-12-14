@@ -158,7 +158,9 @@ img{
 .schedule {
     text-align: center;
     background-size: 50%;
+    background-color: lightblue;
 }
+
 input[type=text], select, textarea {
     width: 100%;
     padding: 12px;
