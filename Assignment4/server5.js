@@ -48,7 +48,9 @@ app.post("/login.html", function (request, response) {
     {
       if (POST.password == users_reg_data[usernameLowerCase].password) // the password correctly corresponds to the defined username in the registration data
       {
-        response.redirect("index.html"); // username and password match the user reg data; send to invoice with quantity and username info stored in query string
+        response
+          .cookie('userID', usernameLowerCase)  // Add a cookie
+          .redirect("index.html"); // username and password match the user reg data; send to invoice with quantity and username info stored in query string
         return;
       }
       else {
@@ -127,6 +129,7 @@ app.post("/register.html", function (request, response) {
     users_reg_data[usernameLowerCase].email = POST.email; // store the email value into users_reg_data file under email
     users_reg_data[usernameLowerCase].color = POST.color;
     users_reg_data[usernameLowerCase].registrationDate = a;
+    response.cookie('userID', usernameLowerCase) // Add a cookie
 
 
     var output_data = JSON.stringify(users_reg_data); // stringify users_reg_data
