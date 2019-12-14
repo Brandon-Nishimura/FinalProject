@@ -6,44 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Schedule</title>
-    <link rel="stylesheet" href="style2.css"> 
-    <script type="text/javascript" src="schedule.js"></script>
+    <link rel="stylesheet" href="style2.css">
+    <script type="text/javascript" src="schedule.js">
+    </script>
 </head>
 
 <body>
+<script>
+
+// console.log(document.cookie.color);
+var fix = document.cookie.substring(document.cookie.indexOf("=") + 1);
+const username = fix.charAt(0).toUpperCase() + fix.substring(1);
+
+
+
+/* Validation Script (move to server page)
+
+       
+        console.log(users_reg_data[usernameLowerCase].username);
+
+if (userOnly == users_reg_data[usernameLowerCase.username) {
+        validLogin = yes
+} else {
+    // redirect to login page, they are not logged in 
+}
+
+
+*/
+
+
+    </script>
 
     <!-- Standard header. -->
 
     <header id="main-header"></header>
-
-    <div style="background-color:lightblue" align="left">
-        <h1>Schedule</h1>
-    </div>
-
-    <div class="schedule">
-        
-        <h1>Welcome, [TEMPORARYNAME]
-
-            
-            <script>
-                    if (typeof document.cookie.userID != undefined) {
-                        console.log("Test worked!")
-                        console.log(users_reg_data[usernameLowerCase].username + "logged in!");
-                        console.log("Cookies " + request.cookies);
-                        console.log(users_reg_data[usernameLowerCase].username);
-            }
-                    
-
-        document.write(nextLessonString);
-        </script>
-
+    <br>
+    <div class="schedule" style="color: #e66465">
+<script>
+            document.write(`
+            <h1>
+            Here's your schedule, ${username}! 
+            <br><br>
+            ${nextLessonString}
+            </h1>
+            `);
+            </script>
         </h1>
+        </div>
 
 
+<div class="break"></div>
 
-    </div>
 
-    
 
 
 
@@ -54,7 +68,7 @@
 
     <footer id="main-footer"></footer>
     <script type="text/javascript" src="common.js"></script>
-    
+
 
 </body>
 

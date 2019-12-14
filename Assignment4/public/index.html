@@ -13,9 +13,28 @@
     <link rel="stylesheet" href="style2.css">
     <title>My Piano Studio</title>
 
-
+    <script>
+            // Insert Welcome Message validation with an if cookie-checker
+            
+            
+            
+            // var userOnly = document.cookie.substr(7); // Removes the first seven letters (aka userID=)
+            function welcomeMsg () {
+            var userOnly = document.cookie.substring(document.cookie.indexOf("=") + 1);
+            if (userOnly = true) {
+                document.write("Welcome, new user!")
+            } else if (userOnly == undefined ){
+                document.write("Welcome, new user!")
+            } else {
+                document.write(`Welcome, ${userOnly}`);
+            }
+        }
+        
+    </script>
 </head>
 <body>
+        <element onload="welcomeMsg"></element>
+
 
 <!-- This code creates our common header and is standard amongst all of our public html pages.-->
     
@@ -23,8 +42,12 @@
 
 <!-- This is the rest of the page.-->
 
-    <div style="background-color:lightblue" align="left">
-        <h1>Home Page</h1>
+<h1>
+
+    <div style="background-color:lightblue">
+
+        <br>
+        Home Page</h1>
     </div>
 
     <img src="https://www.readingkeyboardmusic.com/wp-content/uploads/2013/01/piano-teacher-with-student.jpg"

@@ -7,6 +7,47 @@ var app = express();
 var myParser = require("body-parser");
 var querystring = require('querystring');
 var fs = require('fs'); // require readFileSync;
+/* var cookieParser = require("cookie-parser");
+app.use(cookieParser()); */ 
+
+/*function getCookie(userID) {
+  var name = userID + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+      }
+  }
+  return "";
+}
+
+function checkCookie() {
+  var user = getCookie("userID");
+  if (user != "") {
+      alert("Welcome again " + user);
+  } else {
+      user = prompt("Please enter your name:", "");
+      if (user != "" && user != null) {
+          setCookie("user", user, 30);
+      }
+  }
+}
+
+function loadCookie() {
+  var name = getCookie("userID");
+  if (user != "") {
+      console.log("Good");
+  }
+  else {
+      console.log("Not good");
+  }
+}
+*/
 
 // Source: Lab 14 exercise 4 
 var filename = "user_reg_data.json"; // define file name
@@ -19,6 +60,9 @@ var registerqstring = "";
 var raw_data = fs.readFileSync(filename, 'utf-8');
 var users_reg_data = JSON.parse(raw_data);
 
+function callName () {
+console.log(users_reg_data.userOnly.name);
+}
 
 // Source: Lab 14 exercise 4 
 app.use(myParser.urlencoded({ extended: true })); // use myparser 
@@ -128,6 +172,7 @@ app.post("/register.html", function (request, response) {
     users_reg_data[usernameLowerCase].registrationDate = a;
     // Add cookie for use on server
     response.cookie('userID', usernameLowerCase);
+            
 
   /*  console.log("Cookie Set!");
     if (typeof request.cookies != undefined) {
@@ -196,7 +241,6 @@ function fullnameValidation(fullName, return_errors = false) {
 
   return return_errors ? errors : (errors.length == 0);
 }
-
 
 app.use(express.static('./public'));
 app.listen(8080, () => console.log(`listening on port 8080`));
