@@ -355,3 +355,12 @@ th {
     color: brown
   }
 
+
+.title {
+    font-style: italic; 
+    font-family: 'Apple Chancery';
+    font-weight: bolder;
+    color: rgb(128, 96, 216);
+    font-size: 50px;
+    
+}
