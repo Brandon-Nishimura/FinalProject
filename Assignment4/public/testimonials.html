@@ -6,25 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style2.css">
-    <title>Testimonials </title>
-</head>
-
-<body>
+    <title>Testimonials </title </head> <body>
 
     <header id="main-header"></header>
 
-    <h2>Testimonials</h2>
+    <div style="background-color:lightblue" align="left">
+        <h1>Testimonials</h1>
     </div>
-    <div align="center">
-        <button type="button">Home</button>
-        <button type="button">Blog</button>
-        <button type="button">Gallery</button>
-        <button type="button">Lessons</button>
-        <button type="button">Pricing</button>
-        <button type="button">Testimonials</button>
-        <button type="button">Events</button>
-        <button type="button">About Us</button>
-        <button type="button">Contact</button>
+
     </div>
     <br>
     <br>
@@ -91,20 +80,19 @@
 
     <!-- Source: Lab 14 exercise 4 and Kazman Assignment 1 example (onkeyup)-->
     <!--  Source: contact page and css: https://www.w3schools.com/howto/howto_css_contact_form.asp-->
-     <!--Source: max length in textbox https://www.tutorialspoint.com/How-to-limit-the-number-of-characters-entered-in-a-textarea-in-an-HTML-form-->
-    <div class= "container">
-    <form name="register" action="" method="POST">
+    <!--Source: max length in textbox https://www.tutorialspoint.com/How-to-limit-the-number-of-characters-entered-in-a-textarea-in-an-HTML-form-->
+    <div class="container"></div>
+    <form name="testimonial" action="" method="POST">
         <div style="text-align:center">
             <h2>Tell us about your own experience!</h2>
         </div>
         <br>
-        <input type="text" name="fullname" size="40" placeholder="Enter the name you want shown"><span id="fullname_span"></span><br />
-        <input type="text" name="username" size="40" placeholder="Enter username"><span id="username_span"></span><br />
-        <textarea type="text" id="testimonial" name="testimonial" placeholder="Write your testimonial here!" style="height:200px;" max="10"></textarea>
+        <input type="text" name="fullname" size="40" placeholder="Enter the name you want shown"><br />
+        <input type="text" name="username" size="40" placeholder="Enter username"><br />
+        <input type="text" name="testimonial" placeholder="Write your testimonial here!" style="height:200px;">
         <input type="submit" value="Submit" name="registerSubmit"><span id="button_span"></span>
     </form>
-</div>
-
+    </div>
 
 
     <div class="break"></div>
@@ -112,8 +100,33 @@
 
     <script type="text/javascript" src="common.js"></script>
 
+    <script>
+        // Source: Port Assignment 1 example 
+        window.onload = function () {
+            let params = (new URL(document.location)).searchParams;
+            the_user = params.get("username"); // get value of user 
+            console.log(the_user);
+            if (the_user != null) {
+                // there is a value for the_user
+                testimonial.username.value = the_user;
+                // store the value for the_user in the login form in the username textbox
+            }
+            the_fullname = params.get("fullname"); // get value of user 
+            console.log(the_fullname);
+            if (the_fullname != null) {
+                // there is a value for the_user
+                testimonial.fullname.value = the_fullname;
+                // store the value for the_user in the login form in the username textbox
+            }
+            the_testimonial = params.get("testimonial"); // get value of user 
+            console.log(the_testimonial);
+            testimonial.testimonial.value = the_testimonial;
+            // store the value for the_user in the login form in the username textbox
+        }
+    </script>
 
-</body>
+
+    </body>
 
 </html>
 
@@ -148,4 +161,29 @@
         </div>
     </div>
     */
+</script>
+
+
+<script>
+
+    /* window.onload = function () {
+         let params = (new URL(document.location)).searchParams; // gets query string + form data
+         if (!params.has("username")) {
+             the_user = "";
+         } else {
+             the_user = params.get("username"); // store value in username textbox to the variable the_user
+         }
+         console.log(the_user);
+         if (!params.has("fullname")) {
+             the_name = "";
+         } else {
+             the_name = params.get("fullname");
+         }
+         if (!params.has("testimonial")) {
+             the_testimonial = "";
+         } else {
+             the_testimonial = params.get("testimonial");
+         }
+     }
+     */
 </script>
