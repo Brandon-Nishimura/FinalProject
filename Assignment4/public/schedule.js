@@ -1,8 +1,6 @@
 /* Created by Brandon Nishimura
 Purpose: Create the schedule page!*/
 
-
-
 console.log(document.cookie);
 var userOnly = document.cookie.substr(7); // Removes the first seven letters (aka userID=)
 console.log(userOnly);
@@ -22,7 +20,7 @@ console.log("userAday: " + userAday)
 
 // Pull the current time so it can be used for our calculations
 
-currentTime = new Date ( );
+currentTime = new Date ();
 console.log("currentTime: " + currentTime);
 
 var currentDayNum = currentTime.getDay();
@@ -75,9 +73,17 @@ console.log(nextLessonString);
 
 // Generate the next four days!
 
+var nextNextLesson = calcdays+7;
+var newDt = new Date();
+newDt.setDate(newDt.getDate() + nextNextLesson);
+var oneWeekString = ("Your next lesson is on: " + newDt);   
+var oneWeekSlice = oneWeekString.slice(0, 39);
+console.log(oneWeekSlice);    
 
-
-
-
+var nextNextNextLesson = calcdays+8;
+newDt.setDate(newDt.getDate() + nextNextNextLesson);
+var twoWeekString = ("After that, your lesson is on: " + newDt);   
+var twoWeekSlice = twoWeekString.slice(0, 46);
+console.log(twoWeekSlice);    
 
 // var nextWeekString =

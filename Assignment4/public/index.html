@@ -16,25 +16,24 @@
     <script>
             // Insert Welcome Message validation with an if cookie-checker
             
-            
-            
-            // var userOnly = document.cookie.substr(7); // Removes the first seven letters (aka userID=)
             function welcomeMsg () {
-            var userOnly = document.cookie.substring(document.cookie.indexOf("=") + 1);
-            if (userOnly = true) {
-                document.write("Welcome, new user!")
-            } else if (userOnly == undefined ){
-                document.write("Welcome, new user!")
+            console.log(document.cookie);
+            var name = document.cookie;
+            console.log(name);
+            let undercase = document.cookie.substr(7); // Removes the first seven letters (aka userID=)
+            var userOnly = undercase.charAt(0).toUpperCase() + undercase.substring(1);
+            if (userOnly != "" ){
+                document.write(`
+                Welcome, ${userOnly}!`);
             } else {
-                document.write(`Welcome, ${userOnly}`);
+                document.write("Welcome, new user!");
             }
         }
         
     </script>
+
 </head>
 <body>
-        <element onload="welcomeMsg"></element>
-
 
 <!-- This code creates our common header and is standard amongst all of our public html pages.-->
     
@@ -44,12 +43,14 @@
 
 <h1>
 
-    <div style="background-color:lightblue">
+    <div class="index-header">
+
+            <script>welcomeMsg();</script>
 
         <br>
+        <br>
         Home Page</h1>
-    </div>
-
+</div>
     <img src="https://www.readingkeyboardmusic.com/wp-content/uploads/2013/01/piano-teacher-with-student.jpg"
         alt="Student-Teacher Lesson" height="50%" width="50%"></a>
 

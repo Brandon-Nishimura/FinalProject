@@ -357,3 +357,8 @@ th {
     color: brown
   }
 
+.index-header {
+    color: #e66465;
+    background-color: lightblue;
+    text-align: center
+}

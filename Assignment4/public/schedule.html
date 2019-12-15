@@ -8,54 +8,69 @@
     <title>Schedule</title>
     <link rel="stylesheet" href="style2.css">
     <script type="text/javascript" src="schedule.js">
+
     </script>
 </head>
 
 <body>
 <script>
 
+console.log(document.cookie);
+var userOnly = document.cookie.substr(7); // Removes the first seven letters (aka userID=)
+console.log(userOnly);
+if (userOnly == "" ){
+                alert("You are not authorized to view this page. Please log in!")
+                window.location.replace("/index.html")
+            }
+
 // console.log(document.cookie.color);
 var fix = document.cookie.substring(document.cookie.indexOf("=") + 1);
-const username = fix.charAt(0).toUpperCase() + fix.substring(1);
-
-
+var username = fix.charAt(0).toUpperCase() + fix.substring(1);
 
 /* Validation Script (move to server page)
 
        
         console.log(users_reg_data[usernameLowerCase].username);
 
-if (userOnly == users_reg_data[usernameLowerCase.username) {
+if (userOnly == users_reg_data[usernameLowerCase.username]) {
         validLogin = yes
 } else {
+    
     // redirect to login page, they are not logged in 
 }
 
-
 */
-
-
     </script>
 
     <!-- Standard header. -->
 
     <header id="main-header"></header>
     <br>
-    <div class="schedule" style="color: #e66465">
+    <h1>
+    <div class="schedule"  style="color: #e66465">
 <script>
             document.write(`
-            <h1>
             Here's your schedule, ${username}! 
             <br><br>
             ${nextLessonString}
-            </h1>
             `);
             </script>
-        </h1>
+<div class="smallbreak">
+    <script>
+        document.write(`
+        ${oneWeekSlice} 
+        <br><br>
+        ${twoWeekSlice}
+        <br>
+        `);
+    </script>
+</div>
+<br>
+Please don't forget to pay before the 10th of every month or we will have to charge a late fee!
+    </h1>
+    
         </div>
-
-
-<div class="break"></div>
+<div class="smallbreak"></div>
 
 
 
