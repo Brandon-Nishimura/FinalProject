@@ -17,6 +17,14 @@
         "registrationDate": "Fri Dec 13 2019 11:57:43 GMT-1000 (Hawaii-Aleutian Standard Time)",
         "day": "thursday"
     },
+    "jfklajdfi": {
+        "username": "jfklajdfi",
+        "password": "111111",
+        "full_name": "lknk",
+        "email": "a@gmil.com",
+        "color": "#e66465",
+        "registrationDate": "Fri Dec 13 2019 11:52:38 GMT-1000 (Hawaii-Aleutian Standard Time)"
+    },
     "wednesday": {
         "username": "wednesday",
         "password": "111111",
@@ -24,6 +32,14 @@
         "email": "a@gmail.com",
         "color": "#e66465",
         "registrationDate": "Fri Dec 13 2019 11:54:21 GMT-1000 (Hawaii-Aleutian Standard Time)"
+    },
+    "kajfka": {
+        "username": "kajfka",
+        "password": "111111",
+        "full_name": "bobhi",
+        "email": "a@gmail.com",
+        "color": "#e66465",
+        "registrationDate": "Fri Dec 13 2019 11:55:33 GMT-1000 (Hawaii-Aleutian Standard Time)"
     },
     "saturday": {
         "username": "saturday",
@@ -40,6 +56,22 @@
         "email": "student@hawaii.edu",
         "color": "#e66465",
         "registrationDate": "Fri Dec 13 2019 12:45:52 GMT-1000 (Hawaii-Aleutian Standard Time)"
+    },
+    "kjilj": {
+        "username": "kjilj",
+        "password": "111111",
+        "full_name": "jkjl",
+        "email": "a@gmail.com",
+        "color": "#e66465",
+        "registrationDate": "Fri Dec 13 2019 12:04:10 GMT-1000 (Hawaii-Aleutian Standard Time)"
+    },
+    "kjakfldj": {
+        "username": "kjakfldj",
+        "password": "111111",
+        "full_name": "ad",
+        "email": "a@gmail.com",
+        "color": "#e66465",
+        "registrationDate": "Fri Dec 13 2019 12:12:58 GMT-1000 (Hawaii-Aleutian Standard Time)"
     },
     "studentd": {
         "username": "studentd",
@@ -80,5 +112,13 @@
         "email": "bnishi@hawaii.edu",
         "color": "#e66465",
         "registrationDate": "Sat Dec 14 2019 15:27:46 GMT-1000 (Hawaii-Aleutian Standard Time)"
+    },
+    "dogstudent": {
+        "username": "dogstudent",
+        "password": "dogdog",
+        "full_name": "Doggo",
+        "email": "dog@dog.com",
+        "color": "#e66465",
+        "registrationDate": "Sun Dec 15 2019 22:38:10 GMT-1000 (Hawaii-Aleutian Standard Time)"
     }
 }
