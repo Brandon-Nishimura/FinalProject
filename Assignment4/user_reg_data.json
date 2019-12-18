@@ -1,2 +1,124 @@
-{"mondaytest":{"username":"monday","password":"monday","full_name":"monday student","email":"monday","color":"#e66465","date":"Wed Dec 11 2019 15:57:31 GMT-1000 (Hawaii-Aleutian Standard Time)","day":"monday"},"thursday":{"username":"thursday","password":"thursday","full_name":"thursdaystudent","email":"thursday@yahoo.com","color":"#e66465","registrationDate":"Fri Dec 13 2019 11:57:43 GMT-1000 (Hawaii-Aleutian Standard Time)","day":"thursday"},"jfklajdfi":{"username":"jfklajdfi","password":"111111","full_name":"lknk","email":"a@gmil.com","color":"#e66465","registrationDate":"Fri Dec 13 2019 11:52:38 GMT-1000 (Hawaii-Aleutian Standard Time)"},"wednesday":{"username":"wednesday","password":"111111","full_name":"WednesdayStudent","email":"a@gmail.com","color":"#e66465","registrationDate":"Fri Dec 13 2019 11:54:21 GMT-1000 (Hawaii-Aleutian Standard Time)"},"kajfka":{"username":"kajfka","password":"111111","full_name":"bobhi","email":"a@gmail.com","color":"#e66465","registrationDate":"Fri Dec 13 2019 11:55:33 GMT-1000 (Hawaii-Aleutian Standard Time)"},"saturday":{"username":"saturday","password":"saturday","full_name":"SaturdayStudent","email":"saturday@gmail.com","color":"#e66465","registrationDate":"Fri Dec 13 2019 12:17:11 GMT-1000 (Hawaii-Aleutian Standard Time)"},"studenta":{"username":"studenta","password":"student","full_name":"StudentA","email":"student@hawaii.edu","color":"#e66465","registrationDate":"Fri Dec 13 2019 12:45:52 GMT-1000 (Hawaii-Aleutian Standard Time)"},"kjilj":{"username":"kjilj","password":"111111","full_name":"jkjl","email":"a@gmail.com","color":"#e66465","registrationDate":"Fri Dec 13 2019 12:04:10 GMT-1000 (Hawaii-Aleutian Standard Time)"},"kjakfldj":{"username":"kjakfldj","password":"111111","full_name":"ad","email":"a@gmail.com","color":"#e66465","registrationDate":"Fri Dec 13 2019 12:12:58 GMT-1000 (Hawaii-Aleutian Standard Time)"},"studentd":{"username":"studentd","password":"student","full_name":"StudentD","email":"student@hawaii.edu","color":"#e1e651","registrationDate":"Sat Dec 14 2019 12:32:14 GMT-1000 (Hawaii-Aleutian Standard Time)"},"studente":{"username":"studente","password":"student","full_name":"studentE","email":"student@hawaii.edu","color":"#e69e2e","registrationDate":"Sat Dec 14 2019 12:33:34 GMT-1000 (Hawaii-Aleutian Standard Time)"},"itm352":{"username":"itm352","password":"grader","full_name":"itm352","email":"a@gmail.com","color":"#e66465","registrationDate":"Fri Dec 13 2019 11:54:21 GMT-1000 (Hawaii-Aleutian Standard Time)"},"jonnyboy":{"username":"jonnyboy","password":"dogdogdog","full_name":"JohnDoe","email":"john@gmail.com","color":"#e66465","registrationDate":"Sat Dec 14 2019 15:07:40 GMT-1000 (Hawaii-Aleutian Standard Time)"},"brandon":{"username":"brandon","password":"catcatcat","full_name":"BrandonNishimura","email":"bnishi@hawaii.edu","color":"#e66465","registrationDate":"Sat Dec 14 2019 15:27:46 GMT-1000 (Hawaii-Aleutian Standard Time)"}}
-
+{
+    "mondaytest": {
+        "username": "monday",
+        "password": "monday",
+        "full_name": "monday student",
+        "email": "monday",
+        "color": "#e66465",
+        "date": "Wed Dec 11 2019 15:57:31 GMT-1000 (Hawaii-Aleutian Standard Time)",
+        "day": "monday"
+    },
+    "thursday": {
+        "username": "thursday",
+        "password": "thursday",
+        "full_name": "thursdaystudent",
+        "email": "thursday@yahoo.com",
+        "color": "#e66465",
+        "registrationDate": "Fri Dec 13 2019 11:57:43 GMT-1000 (Hawaii-Aleutian Standard Time)",
+        "day": "thursday"
+    },
+    "jfklajdfi": {
+        "username": "jfklajdfi",
+        "password": "111111",
+        "full_name": "lknk",
+        "email": "a@gmil.com",
+        "color": "#e66465",
+        "registrationDate": "Fri Dec 13 2019 11:52:38 GMT-1000 (Hawaii-Aleutian Standard Time)"
+    },
+    "wednesday": {
+        "username": "wednesday",
+        "password": "111111",
+        "full_name": "WednesdayStudent",
+        "email": "a@gmail.com",
+        "color": "#e66465",
+        "registrationDate": "Fri Dec 13 2019 11:54:21 GMT-1000 (Hawaii-Aleutian Standard Time)"
+    },
+    "kajfka": {
+        "username": "kajfka",
+        "password": "111111",
+        "full_name": "bobhi",
+        "email": "a@gmail.com",
+        "color": "#e66465",
+        "registrationDate": "Fri Dec 13 2019 11:55:33 GMT-1000 (Hawaii-Aleutian Standard Time)"
+    },
+    "saturday": {
+        "username": "saturday",
+        "password": "saturday",
+        "full_name": "SaturdayStudent",
+        "email": "saturday@gmail.com",
+        "color": "#e66465",
+        "registrationDate": "Fri Dec 13 2019 12:17:11 GMT-1000 (Hawaii-Aleutian Standard Time)"
+    },
+    "studenta": {
+        "username": "studenta",
+        "password": "student",
+        "full_name": "StudentA",
+        "email": "student@hawaii.edu",
+        "color": "#e66465",
+        "registrationDate": "Fri Dec 13 2019 12:45:52 GMT-1000 (Hawaii-Aleutian Standard Time)"
+    },
+    "kjilj": {
+        "username": "kjilj",
+        "password": "111111",
+        "full_name": "jkjl",
+        "email": "a@gmail.com",
+        "color": "#e66465",
+        "registrationDate": "Fri Dec 13 2019 12:04:10 GMT-1000 (Hawaii-Aleutian Standard Time)"
+    },
+    "kjakfldj": {
+        "username": "kjakfldj",
+        "password": "111111",
+        "full_name": "ad",
+        "email": "a@gmail.com",
+        "color": "#e66465",
+        "registrationDate": "Fri Dec 13 2019 12:12:58 GMT-1000 (Hawaii-Aleutian Standard Time)"
+    },
+    "studentd": {
+        "username": "studentd",
+        "password": "student",
+        "full_name": "StudentD",
+        "email": "student@hawaii.edu",
+        "color": "#e1e651",
+        "registrationDate": "Sat Dec 14 2019 12:32:14 GMT-1000 (Hawaii-Aleutian Standard Time)"
+    },
+    "studente": {
+        "username": "studente",
+        "password": "student",
+        "full_name": "studentE",
+        "email": "student@hawaii.edu",
+        "color": "#e69e2e",
+        "registrationDate": "Sat Dec 14 2019 12:33:34 GMT-1000 (Hawaii-Aleutian Standard Time)"
+    },
+    "itm352": {
+        "username": "itm352",
+        "password": "grader",
+        "full_name": "itm352",
+        "email": "a@gmail.com",
+        "color": "#e66465",
+        "registrationDate": "Fri Dec 13 2019 11:54:21 GMT-1000 (Hawaii-Aleutian Standard Time)"
+    },
+    "jonnyboy": {
+        "username": "jonnyboy",
+        "password": "dogdogdog",
+        "full_name": "JohnDoe",
+        "email": "john@gmail.com",
+        "color": "#e66465",
+        "registrationDate": "Sat Dec 14 2019 15:07:40 GMT-1000 (Hawaii-Aleutian Standard Time)"
+    },
+    "brandon": {
+        "username": "brandon",
+        "password": "catcatcat",
+        "full_name": "BrandonNishimura",
+        "email": "bnishi@hawaii.edu",
+        "color": "#e66465",
+        "registrationDate": "Sat Dec 14 2019 15:27:46 GMT-1000 (Hawaii-Aleutian Standard Time)"
+    },
+    "dogstudent": {
+        "username": "dogstudent",
+        "password": "dogdog",
+        "full_name": "Doggo",
+        "email": "dog@dog.com",
+        "color": "#e66465",
+        "registrationDate": "Sun Dec 15 2019 22:38:10 GMT-1000 (Hawaii-Aleutian Standard Time)"
+    }
+}

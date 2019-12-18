@@ -180,9 +180,22 @@ img{
 }
 
 .schedule {
+    border-radius: 50px;
     text-align: center;
     background-size: 50%;
     background-color: lightblue;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.schedulecustom {
+    border-radius: 50px;
+    text-align: center;
+    background-size: 50%;
+    background-color: lightblue;
+    color: lightcoral;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 input[type=text], select, textarea {

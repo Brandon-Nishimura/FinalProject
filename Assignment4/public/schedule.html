@@ -13,33 +13,20 @@
 </head>
 
 <body>
-<script>
+    <script>
 
-console.log(document.cookie);
-var userOnly = document.cookie.substr(7); // Removes the first seven letters (aka userID=)
-console.log(userOnly);
-if (userOnly == "" ){
-                alert("You are not authorized to view this page. Please log in!")
-                window.location.replace("/index.html")
-            }
+        console.log(document.cookie);
+        var userOnly = document.cookie.substr(7); // Removes the first seven letters (aka userID=)
+        console.log(userOnly);
+        if (userOnly == "") {
+            alert("You are not authorized to view this page. Please log in to view the schedule!")
+            window.location.replace("/index.html")
+        }
 
-// console.log(document.cookie.color);
-var fix = document.cookie.substring(document.cookie.indexOf("=") + 1);
-var username = fix.charAt(0).toUpperCase() + fix.substring(1);
+        // console.log(document.cookie.color);
+        var fix = document.cookie.substring(document.cookie.indexOf("=") + 1);
+        var username = fix.charAt(0).toUpperCase() + fix.substring(1);
 
-/* Validation Script (move to server page)
-
-       
-        console.log(users_reg_data[usernameLowerCase].username);
-
-if (userOnly == users_reg_data[usernameLowerCase.username]) {
-        validLogin = yes
-} else {
-    
-    // redirect to login page, they are not logged in 
-}
-
-*/
     </script>
 
     <!-- Standard header. -->
@@ -47,39 +34,48 @@ if (userOnly == users_reg_data[usernameLowerCase.username]) {
     <header id="main-header"></header>
     <br>
     <h1>
-    <div class="schedule"  style="color: #e66465">
-<script>
-            document.write(`
+        <div class="schedule">
+            <script>
+                document.write(`
             Here's your schedule, ${username}! 
             <br><br>
             ${nextLessonString}
             `);
             </script>
-<div class="smallbreak">
-    <script>
-        document.write(`
+            <div class="smallbreak"></div>
+            <div class="schedulecustom">
+                <script>
+                    document.write(`
         ${oneWeekSlice} 
-        <br><br>
-        ${twoWeekSlice}
         <br>
         `);
-    </script>
-</div>
-<br>
-Please don't forget to pay before the 10th of every month or we will have to charge a late fee!
+                </script>
+            </div>
+            <br>
+            Please don't forget to pay before the 10th of every month or we will have to charge a late fee!
     </h1>
-    
-        </div>
-<div class="smallbreak"></div>
+    </div>
+    <div class="smallbreak"></div>
 
+    <!-- Creating a form for the user to modify their schedule. -->
+    <form>
+        <fieldset>
+            <legend>
+                <h1 style="color: lightcoral">Modifying your schedule.</h1>
+            </legend>
+            <p>
+                <h1><label>Can't make a certain date? Let us know.</label>
+                    <select id="ModifyLesson">
+                        <option value="NextLesson">Next Lesson</option>
+                        <option value="NextWeekLesson">Next Week's Lesson</option>
+                    </select>
+            </p>
+        </fieldset>
+    </form>
 
-
-
-
-
-
-
+    <div class="smallbreak"></div>
     <!-- Standard footer and source code. -->
+
 
     <footer id="main-footer"></footer>
     <script type="text/javascript" src="common.js"></script>
