@@ -1,3 +1,7 @@
+<!-- Author:  Brandon Nishimurae-->
+<!--Description: This is the schedule page that allows users who have an account with us to see when their next lesson in.
+    User must be logged in before viewing the schedue page -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,6 +22,7 @@
 console.log(document.cookie);
 var userOnly = document.cookie.substr(7); // Removes the first seven letters (aka userID=)
 console.log(userOnly);
+// if not logged in and therefore no cookie is set, send alert and take user back to home page
 if (userOnly == "" ){
                 alert("You are not authorized to view this page. Please log in!")
                 window.location.replace("/index.html")
@@ -71,10 +76,6 @@ Please don't forget to pay before the 10th of every month or we will have to cha
     
         </div>
 <div class="smallbreak"></div>
-
-
-
-
 
 
 
