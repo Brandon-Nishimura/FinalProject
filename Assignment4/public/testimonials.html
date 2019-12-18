@@ -1,3 +1,6 @@
+<!-- Author: Kristina Tommee-->
+<!--Description: This is the tesimoinal page. The purpose of this page is to allow users to hear about 
+some of our students' experiences with us. It also allows users who have an account with us to write their own testimony -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style2.css">
     <title>Testimonials </title </head> <body>
-
+    <!-- Common header used on all pages -->
     <header id="main-header"></header>
 
     <div style="background-color:lightblue" align="left">
@@ -17,6 +20,7 @@
     </div>
     <br>
     <br>
+    <!-- Testimonay quote -->
     <div class="boxed" align="left">
         "I am so glad to have found My Piano Studio.
         I tried to teach my kids on my own, but
@@ -29,48 +33,50 @@
     <div align="left"">
         <img src="
         https://media4.s-nbcnews.com/i/newscms/2016_25/1137236/ss-hairstyles-round-faces-mandy-moore_313362d1ec4684d2e36d49a5b4b9f48e.jpg"
-        alt="Girl in a jacket" style="width:125px;height:150px;">
+        alt="Kate Image" style="width:125px;height:150px;">
         <p class="caption">- Kate C., Honolulu, HI</p>
     </div>
     <br>
+    <!-- Testimonay textbox -->
     <div class="boxed2" align="right">
         "Never would have thought I would learn how
         to play the piano at my age! It has always bee
         a dream of mine to learn and thanks to My Piano Studio,
         my dream has turned into a reality!"
     </div>
-
+    <!-- Headshot -->
     <div align="right">
         <img src=" http://cdn.facesofopensource.com/wp-content/uploads/2016/04/23072022/faces.BrianKernighan19449.web_.jpg"
-            alt="Girl in a jacket" style="width:125px;height:150px;">
+            alt="Martin Image" style="width:125px;height:150px;">
         <p class="caption">- Martin B., Mililani, HI</p>
     </div>
 
     <br>
-
+    <!-- Testimonay textbox -->
     <div class="boxed" align="left">
         "The people at My Piano Studio are so kind!
         Even though I am a slow learner, they are so patient understanding!"
     </div>
-
+    <!-- Headshot -->
     <div align="left">
         <img src="
-            https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-8.jpg" alt="Girl in a jacket"
+            https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-8.jpg" alt="Hannah Image"
             style="width:125px;height:150px;">
         <p class="caption">- Hannah J., Kailua, HI</p>
     </div>
 
     <br>
+    <!-- Testimonay textbox -->
     <div class="boxed2" align="right">
         "I always thought that piano lessons would be out
         of my price range, until I found My Piano Studio.
         Their prices are very affordable, one of the cheapest I have found in Hawaii."
     </div>
-
+    <!-- Headshot -->
     <div align="right">
         <img src="
             https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg9T9zAHPVFrcI2jtdzP3lW119AZgAms2FhdUkfQvl44P2FzTO&s"
-            alt="Girl in a jacket" style="width:125px;height:150px;">
+            alt="Karen Image" style="width:125px;height:150px;">
         <p class="caption">- Karen S., Aiea, HI</p>
     </div>
 
@@ -78,8 +84,7 @@
     <br>
 
     <!-- Source: Lab 14 exercise 4 and Kazman Assignment 1 example (onkeyup)-->
-    <!--  Source: contact page and css: https://www.w3schools.com/howto/howto_css_contact_form.asp-->
-    <!--Source: max length in textbox https://www.tutorialspoint.com/How-to-limit-the-number-of-characters-entered-in-a-textarea-in-an-HTML-form-->
+    <!--  Source: testimonial format and css: https://www.w3schools.com/howto/howto_css_contact_form.asp-->
     <div class="container"></div>
     <form name="testimonial" action="" method="POST">
         <div style="text-align:center">
@@ -94,8 +99,12 @@
     </form>
     </div>
 
+    <!-- Creates a condensed break using a class with a margin-top instead of multiple <br>'s. -->
+
 
     <div class="breaktestimonial"></div>
+
+    <!-- Common footer used on all pages.-->
     <footer id="main-footer"></footer>
 
     <script type="text/javascript" src="common.js"></script>
@@ -109,19 +118,19 @@
             if (the_user != null) {
                 // there is a value for the_user
                 testimonial.username.value = the_user;
-                // store the value for the_user in the login form in the username textbox
+                // store the value for the_user in the testimonial form in the username textbox
             }
-            the_fullname = params.get("fullname"); // get value of user 
+            the_fullname = params.get("fullname"); // get value of fullname 
             console.log(the_fullname);
             if (the_fullname != null) {
                 // there is a value for the_user
                 testimonial.fullname.value = the_fullname;
-                // store the value for the_user in the login form in the username textbox
+                // store the value for the_fullname in the testimonial form in the fullname textbox
             }
-            the_testimonial = params.get("testimonial"); // get value of user 
+            the_testimonial = params.get("testimonial"); // get value of testimonial 
             console.log(the_testimonial);
             testimonial.testimonial.value = the_testimonial;
-            // store the value for the_user in the login form in the username textbox
+            // store the value for the_testionial in the testimonial form in the testimonial textbox
         }
     </script>
 
@@ -129,61 +138,3 @@
     </body>
 
 </html>
-
-<script>
-    /*
-    Source: https://www.w3schools.com/howto/howto_css_contact_form.asp
-        <div class="container">
-        <div style="text-align:center">
-            <h2>Tell us about your own experience!</h2>
-        </div>
-        <div class="row">
-            <div class="column">
-            </div>
-            <div class="column">
-                <form action="/action_page.php">
-                    <label for="fname">First Name</label>
-                    <input type="text" id="fname" name="firstname" placeholder="Your name..">
-                    <label for="lname">Last Name</label>
-                    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-                    <label for="country">Country</label>
-                    <select id="country" name="country">
-                        <option value="australia">Australia</option>
-                        <option value="canada">Canada</option>
-                        <option value="usa">USA</option>
-                    </select>
-                    <label for="subject">Subject</label>
-                    <textarea id="subject" name="subject" placeholder="Write something.."
-                        style="height:170px"></textarea>
-                    <input type="submit" value="Submit">
-                </form>
-            </div>
-        </div>
-    </div>
-    */
-</script>
-
-
-<script>
-
-    /* window.onload = function () {
-         let params = (new URL(document.location)).searchParams; // gets query string + form data
-         if (!params.has("username")) {
-             the_user = "";
-         } else {
-             the_user = params.get("username"); // store value in username textbox to the variable the_user
-         }
-         console.log(the_user);
-         if (!params.has("fullname")) {
-             the_name = "";
-         } else {
-             the_name = params.get("fullname");
-         }
-         if (!params.has("testimonial")) {
-             the_testimonial = "";
-         } else {
-             the_testimonial = params.get("testimonial");
-         }
-     }
-     */
-</script>
