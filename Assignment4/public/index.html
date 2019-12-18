@@ -1,6 +1,6 @@
 <!-- Author: Kristina Tommee/Brandon Nishimura-->
-<!-- Description: This is the home page for my shop. This is the first page that customers will see.
-     From this page, they can then go to the product display page-->
+<!-- Description: This is the home page for our site. This is the first page that user will see.
+     From this page, they can then navigate throughout our site-->
 
 
 <!DOCTYPE html>
@@ -11,46 +11,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style2.css">
-    <title>My Piano Studio</title>
+    <title>My Piano Studio Home Page</title>
 
     <script>
-            // Insert Welcome Message validation with an if cookie-checker
-            
-            function welcomeMsg () {
+        // Insert Welcome Message validation with an if cookie-checker
+
+        function welcomeMsg() {
             console.log(document.cookie);
             var name = document.cookie;
             console.log(name);
             let undercase = document.cookie.substr(7); // Removes the first seven letters (aka userID=)
             var userOnly = undercase.charAt(0).toUpperCase() + undercase.substring(1);
-            if (userOnly != "" ){
+            if (userOnly != "") {
                 document.write(`
                 Welcome, ${userOnly}!`);
             } else {
                 document.write("Welcome, new user!");
             }
         }
-        
+
     </script>
 
 </head>
+
 <body>
 
-<!-- This code creates our common header and is standard amongst all of our public html pages.-->
-    
+    <!-- This code creates our common header and is standard amongst all of our public html pages.-->
+
     <header id="main-header"></header>
 
-<!-- This is the rest of the page.-->
+    <!-- This is the rest of the page.-->
 
-<h1>
+    <h1>
 
-    <div class="index-header">
+        <div class="index-header">
 
             <script>welcomeMsg();</script>
 
-        <br>
-        <br>
-        Home Page</h1>
-</div>
+            <br>
+            <br>
+            Home Page
+    </h1>
+    </div>
+    <!-- Home page front image-->
+
     <img src="https://www.readingkeyboardmusic.com/wp-content/uploads/2013/01/piano-teacher-with-student.jpg"
         alt="Student-Teacher Lesson" height="50%" width="50%"></a>
 
@@ -74,13 +78,15 @@
             equally important. Students are able to learn in a fun and enjoyable environment!
         </p>
 
-<!-- Here we have a section for interested students that includes a registration link to encourage them to sign up an account with us. -->
+        <!-- Here we have a section for interested students that includes a registration link to encourage them to sign up an account with us. -->
 
         <h1>
             New Students:
         </h1>
         <h2>
-            Interested in joining our studio? <a href="/register.html">Create an account with us</a> today to schedule a free trial meet and greet
+            <!-- Link that will take user to the register page-->
+            Interested in joining our studio? <a href="/register.html">Create an account with us</a> today to schedule a
+            free trial meet and greet
             lesson!
             Have any questions? Feel free to call us during our operating hours or anytime through email!
         </h2>
@@ -89,7 +95,7 @@
 
     <img src="/images/logo.png" alt="Logo" height="50%" width="50%"></a>
 
-<!-- This code is also standard amongst our html pages, serving as both our footer and our source for the script that creates the common header and footer. -->
+    <!-- This code is also standard amongst our html pages, serving as both our footer and our source for the script that creates the common header and footer. -->
 
     <footer id="main-footer"></footer>
     <script type="text/javascript" src="common.js"></script>
