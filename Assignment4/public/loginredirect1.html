@@ -7,17 +7,17 @@ if the password does not match the username in the login page. This page is a de
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <!-- Source of delay redirect: https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_redirect-->
+    <!-- Source of delay redirect: https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_redirect-->
     <meta http-equiv="Refresh" content="5;url=/login.html">
     <title>Login Username Not Found</title>
     <link rel="stylesheet" href="style2.css">
     <script>
-         // Source: Port Assignment 1 example 
+        // Source: Port Assignment 1 example 
         let params = (new URL(document.location)).searchParams;
         var loginqstring = ""; // initialize variable 
         the_user = params.get("username"); // get value of user 
         if (the_user == null) {
-             // there is no value for the_user
+            // there is no value for the_user
             the_user = "Unknown User";
 
             console.log(the_user);
