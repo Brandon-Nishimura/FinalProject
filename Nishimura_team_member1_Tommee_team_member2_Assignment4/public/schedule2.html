@@ -1,4 +1,4 @@
-<!-- Author:  Brandon Nishimurae-->
+<!-- Author:  Brandon Nishimura-->
 <!--Description: This is the schedule page that allows users who have an account with us to see when their next lesson in.
     User must be logged in before viewing the schedue page -->
 
@@ -63,37 +63,21 @@
     <div class="smallbreak"></div>
 
     <!-- Creating a form for the user to modify their schedule. -->
-    <form name="modifySchedule" action="" method="POST">
+    <form name='modify' action="schedule.html" method="GET">
         <fieldset>
             <legend>
                 <h1 style="color: lightcoral">Modifying your schedule.</h1>
             </legend>
             <p>
                 <h1><label>Can't make a certain date? Let us know.</label>
-                    <select id="ModifyLesson" name = "modify">
+                    <select id="ModifyLesson">
                         <option name="NextLesson" value="NextLesson">Next Lesson</option>
                         <option name="NextNextLesson" value="NextNextLesson">Next Week's Lesson</option>
                     </select>
-                   <!-- <input type="text" name="modify" size="40" id = "modify" placeholder="Enter the name you want shown"><br />-->
-                    <input type="submit" value="Submit" name="registerSubmit"><span id="button_span"></span>
-                    <!--<a href="/modify.html?">Modify Page</a>-->
+                    <input type="submit" value="Submit" id="submit">
             </p>
         </fieldset>
     </form>
-
-    <script>
-        // Source: Port Assignment 1 example 
-        window.onload = function () {
-            let params = (new URL(document.location)).searchParams;
-            modify = params.get("modify"); // get value of user 
-            console.log(modify);
-            if (the_user != null) {
-                // there is a value for the_user
-                modifySchedule.modify.value = modify;
-                // store the value for the_user in the testimonial form in the username textbox
-            }
-        }
-    </script>
 
     <div class="smallbreak"></div>
     <!-- Standard footer and source code. -->

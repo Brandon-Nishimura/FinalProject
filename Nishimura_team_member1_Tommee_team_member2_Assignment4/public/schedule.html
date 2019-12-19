@@ -1,4 +1,4 @@
-<!-- Author:  Brandon Nishimura-->
+<!-- Author:  Brandon Nishimurae-->
 <!--Description: This is the schedule page that allows users who have an account with us to see when their next lesson in.
     User must be logged in before viewing the schedue page -->
 
@@ -63,21 +63,35 @@
     <div class="smallbreak"></div>
 
     <!-- Creating a form for the user to modify their schedule. -->
-    <form name='modify' action="schedule.html" method="GET">
+    <form name="modifySchedule" action="" method="POST">
         <fieldset>
             <legend>
                 <h1 style="color: lightcoral">Modifying your schedule.</h1>
             </legend>
             <p>
                 <h1><label>Can't make a certain date? Let us know.</label>
-                    <select id="ModifyLesson">
+                    <select id="ModifyLesson" name = "modify">
                         <option name="NextLesson" value="NextLesson">Next Lesson</option>
                         <option name="NextNextLesson" value="NextNextLesson">Next Week's Lesson</option>
                     </select>
-                    <input type="submit" value="Submit" id="submit">
+                    <input type="submit" value="Submit" name="registerSubmit"><span id="button_span"></span>
             </p>
         </fieldset>
     </form>
+
+    <script>
+        // Source: Port Assignment 1 example 
+        window.onload = function () {
+            let params = (new URL(document.location)).searchParams;
+            modify = params.get("modify"); // get value of modify 
+            console.log(modify);
+            if (the_user != null) {
+                // there is a value for the_user
+                modifySchedule.modify.value = modify;
+                // store the value for modify in the modify form in the modify textbox
+            }
+        }
+    </script>
 
     <div class="smallbreak"></div>
     <!-- Standard footer and source code. -->
