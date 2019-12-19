@@ -34,5 +34,21 @@
         "color": "#e66465",
         "registrationDate": "Fri Dec 13 2019 11:54:21 GMT-1000 (Hawaii-Aleutian Standard Time)",
         "day": "thursday"
+    },
+    "kristina": {
+        "username": "kristina",
+        "password": "kristina",
+        "full_name": "kristina t",
+        "email": "kristina@gmail.com",
+        "color": "#e69cda",
+        "registrationDate": "Wed Dec 18 2019 21:22:54 GMT-1000 (Hawaii-Aleutian Standard Time)"
+    },
+    "brandon": {
+        "username": "brandon",
+        "password": "brandon",
+        "full_name": "brandon n",
+        "email": "brandon@gmail.com",
+        "color": "#e66465",
+        "registrationDate": "Wed Dec 18 2019 21:25:20 GMT-1000 (Hawaii-Aleutian Standard Time)"
     }
 }
