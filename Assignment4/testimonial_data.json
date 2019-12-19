@@ -1,1 +1,7 @@
-{"itm352":{"username":"itm352","fullname":"bob","testimonial":"hi"},"dogstudent":{"username":"dogstudent","fullname":"Doggo","testimonial":"dadaddododododd"}}
+{
+    "itm352": {
+        "username": "itm352",
+        "fullname": "bob",
+        "testimonial": "hi"
+    }
+}
