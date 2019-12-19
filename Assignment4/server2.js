@@ -261,6 +261,7 @@ function testimonialValidation(testimonial, return_errors = false) {
   return return_errors ? errors : (errors.length == 0);
 }
 
+
 app.use(express.static('./public'));
 app.listen(8080, () => console.log(`listening on port 8080`));
 
