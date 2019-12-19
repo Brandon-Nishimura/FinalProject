@@ -1,5 +1,5 @@
-// Author: Kristina Tommee
-// Description: this is a server to run the product_display.html, product_invoice.html, login.html, and register.html
+// Author: Brandon Nishimura and Kristina Tommee
+// Description: this is a server to run our site
 
 // Source: Port Assignment 1 Example + Lab 13 info_server_Ex4.js 
 var express = require('express');
@@ -185,7 +185,7 @@ function emailValidation(email, return_errors = false) {
 }
 // validate fullname checks whether user name input field is provided with alphabates characters. If not, it displays an alert 
 function fullnameValidation(fullName, return_errors = false) {
-  var letters = /^[A-Za-z]+$/;
+  var letters = /^[A-Za-z ]+$/;
   if (!fullName.match(letters)) {
     // full name includes character not defined in the variable letters
     errors.push('<font color="black">Username can only contain letters</font>');
@@ -194,9 +194,10 @@ function fullnameValidation(fullName, return_errors = false) {
   return return_errors ? errors : (errors.length == 0);
 }
 
+// Source: Lab 14 Exercise 4 
 app.post("/testimonials.html", function (request, response) {
   let POST = request.body; // grab body of request and save it in POST
-  qstring = querystring.stringify(POST); // stringify or convert POST (login info) to a string
+  qstring = querystring.stringify(POST); // stringify or convert POST (testimonial info) to a string
   testimonialqstring = qstring;
   var testimonial = POST.testimonial;
 
@@ -206,18 +207,20 @@ app.post("/testimonials.html", function (request, response) {
     // redirect back to testimonial page if nothing was submitted 
   } else {
     is_valid = true; // initializing variable is_valid
-    // check if username is valid
+
+    // check if testimonial is valid
     errs_array = testimonialValidation(testimonial, true);
-    if (errs_array.length != 0) // there are errors in the username
-      is_valid = false; // username is not valid 
+    if (errs_array.length != 0) // there are errors in the testimonial
+      is_valid = false; // testimonial is valid
     if (!is_valid) {
       // there are errors
       qstring = querystring.stringify(POST); // stringify or convert POST (registration info) to a string
-      registerqstring = qstring;
-      response.redirect("/testimonialredirect3.html?" + testimonialqstring); // there are errors, send back to the register page with the register info stored in query string
+      testimonialqstring = qstring;
+      response.redirect("/testimonialredirect3.html?" + testimonialqstring); // there are errors, send back to the testimonial page with the testimonial info stored in query string
       return;
     }
-    // user submitted testimonial. test if user is logged in
+
+    // user submitted testimonial. test if username is an actual username in the user reg data 
 
     //check if valid username exists
     var username = POST.username; // store what was typed in the username textbox in the variable username
@@ -225,16 +228,15 @@ app.post("/testimonials.html", function (request, response) {
     if (users_reg_data[usernameLowerCase] != undefined) // check if username exists in user registration data
     {
       testimonial_data[usernameLowerCase] = {};  // create empty object 
-      testimonial_data[usernameLowerCase].username = usernameLowerCase; // store the usernameLowerCase value into users_reg_data file under username
-      testimonial_data[usernameLowerCase].fullname = POST.fullname; // store the usernameLowerCase value into users_reg_data file under username
-      testimonial_data[usernameLowerCase].testimonial = POST.testimonial; // store the usernameLowerCase value into users_reg_data file under username
-
+      testimonial_data[usernameLowerCase].username = usernameLowerCase; // store the usernameLowerCase value into testimonial_data.json file under username
+      testimonial_data[usernameLowerCase].fullname = POST.fullname; // store the full name value into testimonial_data.json file under full name
+      testimonial_data[usernameLowerCase].testimonial = POST.testimonial; // store the testimonial value into testimonial_data.json file under testimonial
 
 
       var output_data = JSON.stringify(testimonial_data); // stringify users_reg_data
       fs.writeFileSync(testimonialname, output_data, "utf-8");
 
-      response.redirect("/testimonialredirect1.html"); // registration information is valid; send to invoice with quantity and username info stored in query string
+      response.redirect("/testimonialredirect1.html"); // testimonial information is valid; show message that submission was successful
       return;
     }
     else {
@@ -245,12 +247,17 @@ app.post("/testimonials.html", function (request, response) {
   }
 });
 
+
+// Source: Lab 13 info_server_Ex4.js
+// Source of functions for validation: https://www.w3resource.com/javascript/form/javascript-sample-registration-form-validation.php
+
+// validate testimonial textbox 
 function testimonialValidation(testimonial, return_errors = false) {
   errors = []; // assume no errors at first
-  // check if length is okay; length must be between 4 and 10 characters
+  // check if anything was input into the testimonial textbox
   if (testimonial.length == 0 ){
-    // username doesn't doesn't meet requirements 
-    errors.push('<font color="black">Username must be between 4 and 10 characters long!</font>');
+    // testimonial doesn't doesn't meet requirements 
+    errors.push('<font color="black">Username must be greater than 0 characters long!</font>');
   }
   return return_errors ? errors : (errors.length == 0);
 }
