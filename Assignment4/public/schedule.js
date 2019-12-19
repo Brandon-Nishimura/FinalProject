@@ -1,6 +1,13 @@
 /* Created by Brandon Nishimura
 Purpose: Create the schedule page!*/
 
+/* var fs = require('fs');
+var express = require('express');
+var app = express();
+var myParser = require('body-parser');
+var qs = require('querystring');
+app.use(myParser.urlencoded({ extended: true })); */
+
 // Start by editing the cookie so that we can use it for the username.
 
 console.log(document.cookie);
@@ -83,4 +90,3 @@ newDt.setDate(newDt.getDate() + nextNextLesson);
 var oneWeekString = ("Your following lesson is on: " + newDt);   
 var oneWeekSlice = oneWeekString.slice(0, 44);
 console.log(oneWeekSlice);    
-
