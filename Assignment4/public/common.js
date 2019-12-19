@@ -34,6 +34,7 @@ console.log(footer);
 footer.innerHTML = (`
     <div class="mainfooter" style="background-color: lightblue";>
         <h2>An Octave Higher</h2>
+        <h3>
             691 Auahi Street
             <br>
             Honolulu, HI 96813
@@ -49,4 +50,5 @@ footer.innerHTML = (`
             Monday - Friday: 9:30am - 6:00pm
             Saturday: 8:30am - 7:30pm
             Sunday: Closed 
+            </h3>
         `);
