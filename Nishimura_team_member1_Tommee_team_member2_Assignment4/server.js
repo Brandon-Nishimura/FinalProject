@@ -285,6 +285,7 @@ app.post("/schedule2.html", function (request, response) {
       response.redirect("testimonials.html");
       // redirect back to testimonial page if nothing was submitted 
     } else {
+      
       //check if valid username exists
       var hope = POST.modify; // store what was typed in the username textbox in the variable username
       modify_data = {}; 
