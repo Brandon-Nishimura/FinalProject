@@ -1,0 +1,102 @@
+<!-- Author:  Brandon Nishimurae-->
+<!--Description: This is the schedule page that allows users who have an account with us to see when their next lesson in.
+    User must be logged in before viewing the schedue page -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Schedule</title>
+    <link rel="stylesheet" href="style2.css">
+    <script type="text/javascript" src="schedule.js">
+
+    </script>
+</head>
+
+<body>
+    <script>
+
+        console.log(document.cookie);
+        var userOnly = document.cookie.substr(7); // Removes the first seven letters (aka userID=)
+        console.log(userOnly);
+        // if not logged in and therefore no cookie is set, send alert and take back to home page
+        if (userOnly == "") {
+            alert("You are not authorized to view this page. Please log in to view the schedule!")
+            window.location.replace("/index.html")
+        }
+
+        // console.log(document.cookie.color);
+        var fix = document.cookie.substring(document.cookie.indexOf("=") + 1);
+        var username = fix.charAt(0).toUpperCase() + fix.substring(1);
+
+    </script>
+
+    <!-- Standard header. -->
+
+    <header id="main-header"></header>
+    <br>
+    <h1>
+        <div class="schedule">
+            <script>
+                document.write(`
+            Here's your schedule, ${username}! 
+            <br><br>
+            ${nextLessonString}
+            `);
+            </script>
+            <div class="smallbreak"></div>
+            <div class="schedulecustom">
+                <script>
+                    document.write(`
+        ${oneWeekSlice} 
+        <br>
+        `);
+                </script>
+            </div>
+            <br>
+            Please don't forget to pay before the 10th of every month or we will have to charge a late fee!
+    </h1>
+    </div>
+    <div class="smallbreak"></div>
+
+    <!-- Creating a form for the user to modify their schedule. -->
+    <form name="modifySchedule" action="" method="POST">
+        <fieldset>
+            <legend>
+                <h1 style="color: lightcoral">Modifying your schedule.</h1>
+            </legend>
+            <p>
+                <h1><label>Can't make a certain date? Let us know.</label>
+                    <a href="/modify.html?">Modify Page</a>
+            </p>
+        </fieldset>
+    </form>
+
+    <script>
+        // Source: Port Assignment 1 example 
+        window.onload = function () {
+            let params = (new URL(document.location)).searchParams;
+            modify = params.get("modify"); // get value of user 
+            console.log(modify);
+            if (the_user != null) {
+                // there is a value for the_user
+                modifySchedule.modify.value = modify;
+                // store the value for the_user in the testimonial form in the username textbox
+            }
+        }
+    </script>
+
+    <div class="smallbreak"></div>
+    <!-- Standard footer and source code. -->
+
+
+    <footer id="main-footer"></footer>
+    <script type="text/javascript" src="common.js"></script>
+
+
+</body>
+
+</html>
