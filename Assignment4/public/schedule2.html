@@ -70,7 +70,11 @@
             </legend>
             <p>
                 <h1><label>Can't make a certain date? Let us know.</label>
-                    <input type="text" name="modify" size="40" id = "modify" placeholder="Enter the name you want shown"><br />
+                    <select id="ModifyLesson" name = "modify">
+                        <option name="NextLesson" value="NextLesson">Next Lesson</option>
+                        <option name="NextNextLesson" value="NextNextLesson">Next Week's Lesson</option>
+                    </select>
+                   <!-- <input type="text" name="modify" size="40" id = "modify" placeholder="Enter the name you want shown"><br />-->
                     <input type="submit" value="Submit" name="registerSubmit"><span id="button_span"></span>
                     <!--<a href="/modify.html?">Modify Page</a>-->
             </p>
