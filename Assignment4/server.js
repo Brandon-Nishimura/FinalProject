@@ -1,178 +1,260 @@
-/* Originally created by: Rick Kazman
-Edited by: Brandon Nishimura
-Purpose: Serve as the server for a shop page. */
+// Author: Kristina Tommee
+// Description: this is a server to run the product_display.html, product_invoice.html, login.html, and register.html
 
-var fs = require('fs');
+// Source: Port Assignment 1 Example + Lab 13 info_server_Ex4.js 
 var express = require('express');
 var app = express();
-var myParser = require('body-parser');
-var qs = require('querystring');
-app.use(myParser.urlencoded({ extended: true }));
-var filename = "user_data.json";
+var myParser = require("body-parser");
+var querystring = require('querystring');
+var fs = require('fs'); // require readFileSync;
 
-// Only open the file if it exists
+// Source: Lab 14 exercise 4 
+var filename = "user_reg_data.json"; // define file name
+var quantityqstring = "";
+var loginqstring = "";
+var registerqstring = "";
+var testimonialname = "testimonial_data.json";
 
-if (fs.existsSync(filename)) {
-  var raw_data = fs.readFileSync(filename, 'utf-8');
-  var users_reg_data = JSON.parse(raw_data);
-  // console.log(users_reg_data);
-}
-else {
-  console.log('File ' + filename + " doesnt exist!");
-}
+// Source: Lab 14 exercise 4 
+// read, parse, output the contents from user_registration_info.json
+var raw_data = fs.readFileSync(filename, 'utf-8');
+var users_reg_data = JSON.parse(raw_data);
+var testimonial_raw_data = fs.readFileSync(testimonialname, 'utf-8');
+var testimonial_data = JSON.parse(testimonial_raw_data);
 
-app.get("/login", function (request, response) {
-  // Create our login page with a little bit of decoration!
-  str = `
-  <body>
-  <center>
-  <h2><font color=palevioletred>Login here to confirm your purchases!
-  <br>
-  <br>
-  <img src="./public/images/Product1.jpeg" width="405" height="405" border="3"></img>
-  <form action="" method="POST">
-  <br>
-  <input type="text" name="username" size="80" placeholder="enter username" ><br>
-  <input type="password" name="password" size="80" placeholder="enter password"><br>
-  <br>
-  <input type="submit" value="Submit" id="submit">
-  </form>
-  No account with us? Register <a href="/register"> here!</a></font></h2>
-  </center
-  </body>
-`;
-  response.send(str);
-});
 
-app.get("/register", function (request, response) {
-  // Give a simple register form
-  str = `
-  <body>
-  <h2 style="color:palevioletred;text-align:center;">Please register to purchase your selections!
-  <br>
-  Have an account? Login <a href="/login"> here!</a></h2>
-  <center>
-  <img src="./public/images/Product2.jpeg" width="400" height="400" border="3"></img>
-  <form action="" method="POST"> 
-  <br>
-  <input type="text" name="username" size="80" placeholder="enter username" ><br />
-  <input type="password" name="password" size="80" placeholder="enter password"><br />
-  <input type="password" name="repeat_password" size="80" placeholder="enter password again"><br />
-  <input type="email" name="email" size="80" placeholder="enter email"><br />
-  <input type="submit" value="Submit" id="submit">
-  </form>
-  </center>
-  </body>
-`;
-  response.send(str);
-});
+// Source: Lab 14 exercise 4 
+app.use(myParser.urlencoded({ extended: true })); // use myparser 
 
-var user_product_quantities = {};
-
-app.get("/purchase", function (request, response) {
-  // get quantity data from query string
-  user_product_quantities = request.query;
-  console.log(user_product_quantities);
-  // validate the quantities; if not valid go back to purchase page
-  // if valid go to login
-  response.redirect('login');
-});
-
-app.post("/register", function (request, response) {
-  let POST = request.body;
-  console.log("Got registration request!");
-  // process a simple register form
-  username = POST.username;
-  users_reg_data[username] = {};
-  users_reg_data[username].name = username;
-  users_reg_data[username].password = POST.password;
-  users_reg_data[username].email = POST.email;
-  output_data = JSON.stringify(users_reg_data);
-  fs.writeFileSync(filename, output_data, 'utf-8');
-  console.log("Registered " + username)
-              // Now you need to redirect to the invoice.
-              QueryString = qs.stringify(user_product_quantities);
-              response.redirect("/invoice.html?" + QueryString + "=&username=" + POST.username);;
-});
-
-// Let's verify the login page here!
-
-app.post("/login", function (request, response) {
-  let POST = request.body;
-  console.log(POST);
-  // Process login form POST and redirect to logged in page if ok, back to login page if not
+// Source: Lab 14 exercise 4
+// Process login form POST and redirect to invoice page if ok, back to login page if not
+app.post("/login.html", function (request, response) {
+  let POST = request.body; // grab body of request and save it in POST
+  qstring = querystring.stringify(POST); // stringify or convert POST (login info) to a string
+  loginqstring = qstring;
 
   if (typeof POST['submit'] == undefined) {
-      // Was the submit button pressed?
-      console.log('No Form Data');
+    // check if the submit button was pressed.
+    response.redirect("login.html");
+    // redirect back to login page if nothing was submitted 
   } else {
-      // User submitted a userid and password. Test it to make sure everything checks out.
-      if (users_reg_data[POST.username] != undefined) {
-          // They sent in a valid one.
-          console.log("Got user " + POST.username);
-          if (POST.password == users_reg_data[POST.username].password) {
-              console.log("All good!")
-              // Now you need to redirect to the invoice.
-              QueryString = qs.stringify(user_product_quantities);
-              response.redirect("/invoice.html?" + QueryString + "&username=" + POST.username);
+    // user submitted username and password. test them for validity
 
-          }
-          else {
-              console.log("Wrong password!");
-              response.send("Wrong password! Please hit back and try again.");
-          }
+    //check if valid username exists
+    var username = POST.username; // store what was typed in the username textbox in the variable username
+    var usernameLowerCase = username.toLowerCase(); // convert what was typed in the username textbox to all lower case and store in a variable 
+    var usernameqstring = "&user=" + username; // creates query string for username
+    if (users_reg_data[usernameLowerCase] != undefined) // check if username exists in user registration data
+    {
+      if (POST.password == users_reg_data[usernameLowerCase].password) // the password correctly corresponds to the defined username in the registration data
+      {
+        response
+          .cookie('userID', usernameLowerCase)  // Add a cookie
+          .redirect("index.html"); // username and password match the user reg data; send to invoice with quantity and username info stored in query string
+        return;
       }
       else {
-          // They sent in an invalid one.
-          console.log("User " + POST.username + " not found");
-          response.send("Username not found! Please hit back and try again!")
+        // username exists in user registration data but password is incorrect
+
+        response.redirect("loginredirect2.html?" + loginqstring); // send to a redirect page along with username info saved in query string
+        return;
       }
+    } else {
+      // username doesn't exist 
+      console.log("username doesn't exist");
+    }
+    response.redirect("loginredirect1.html?" + loginqstring); // send to redirect page along with username info saved in query string
   }
 });
 
-// Next, we need to verify our registration page!
+// Source: Lab 14 Exercise 4 
+app.post("/register.html", function (request, response) {
+  // process a register form, redirect to invoice page if ok, back to register page if not 
+  let POST = request.body; // take body of request and save it in local variable, POST
+  var username = POST.username; // store what was typed in the username textbox in the variable username
+  var usernameLowerCase = username.toLowerCase(); // convert what was typed in the username textbox to all lower case and store in a variable 
+  var password = POST.password; // store what was typed in the password textbox in the variable password
+  var repeatPassword = POST.repeatPassword; // store what was typed in the repeat password textbox in the variable repeatPassword
+  var email = POST.email; // store what was typed in the email textbox in the variable email
+  var fullname = POST.fullname; // store what was typed in the fullname textbox in the variable fullname
+  var usernameqstring = "&user=" + username; // creates query string for username
+  var d = Date();
+  a = d.toString();
 
-app.post("/register", function (request, response) {
-  // process a simple register form
-  console.log("Got the registration request!");
-  let POST = request.body;
-  username = POST.username;
-  email = POST.email;
-  repeat_password = POST.repeat_password;
 
-  // Make sure they aren't already a user!
+  is_valid = true; // initializing variable is_valid
+  // check if username is valid
+  errs_array = usernameValidation(usernameLowerCase, true);
+  if (errs_array.length != 0) // there are errors in the username
+    is_valid = false; // username is not valid 
 
-  if (typeof users_reg_data[username] == 'undefined') {
+  // check if password is valid 
+  errs_array = passwordValidation(password, true);
+  if (errs_array.length != 0) // there are errors in the password
+    is_valid = false; // password is not valid 
 
-      // They aren't, so let's add them into the array, as well as the rest of their info.
+  // check if email is valid 
+  errs_array = emailValidation(email, true);
+  if (errs_array.length != 0) // there are errors in the email
+    is_valid = false; // email is not valid 
 
-      users_reg_data[username] = {};
-      users_reg_data[username].name = username;
-      users_reg_data[username].password = POST.password;
+  // check if fullname is valid
+  errs_array = fullnameValidation(fullname, true);
+  if (errs_array.length != 0) // there are errors in the full name
+    is_valid = false; // full name is not valid 
 
-      // Verify the passwords match.
+  // Now check if there were any errors
+  if (!is_valid) {
+    // there are errors
+    qstring = querystring.stringify(POST); // stringify or convert POST (registration info) to a string
+    registerqstring = qstring;
+    response.redirect("register.html?" + registerqstring); // there are errors, send back to the register page with the register info stored in query string
+    return;
+  }
 
-      if (POST.password != POST.repeat_password) {
-          console.log("Passwords don't match.");
-          response.send("Passwords don't match!");
-      }
+  if (repeatPassword != password) {
+    // repeat password does match password
+    qstring = querystring.stringify(POST); // stringify or convert POST (registration info) to a string
+    registerqstring = qstring;
+    response.redirect("register.html?" + registerqstring); // send back to register page with register info stored in query string
+    return;
+  }
 
-      users_reg_data[username].email = POST.email;
+  if (typeof users_reg_data[usernameLowerCase] == 'undefined') // username doesn't exist in user registration data
+  {
+    users_reg_data[usernameLowerCase] = {};  // create empty object 
+    users_reg_data[usernameLowerCase].username = usernameLowerCase; // store the usernameLowerCase value into users_reg_data file under username
+    users_reg_data[usernameLowerCase].password = POST.password; // store the passoword value into users_reg_data file under password
+    users_reg_data[usernameLowerCase].full_name = POST.fullname; // store the full name value into users_reg_data file under full name
+    users_reg_data[usernameLowerCase].email = POST.email; // store the email value into users_reg_data file under email
+    users_reg_data[usernameLowerCase].color = POST.color;
+    users_reg_data[usernameLowerCase].registrationDate = a;
+    response.cookie('userID', usernameLowerCase) // Add a cookie
 
-      var output_data = JSON.stringify(users_reg_data);
-      fs.writeFileSync(filename, output_data, 'utf-8');
-      console.log("All good!")
-              // Now you need to redirect to the invoice.
-              QueryString = qs.stringify(user_product_quantities);
-              response.send("Registered" + username)
-              response.redirect("/invoice.html?" + QueryString + "=&username=" + POST.username);
 
+    var output_data = JSON.stringify(users_reg_data); // stringify users_reg_data
+    fs.writeFileSync(filename, output_data, "utf-8");
+
+    response.redirect("/registrationredirect.html"); // registration information is valid; send to invoice with quantity and username info stored in query string
+    return;
+  }
+  else {
+    response.redirect("redirect.html"); // username already taken; send user to redirect.html page 
+  }
+});
+
+// Source: Lab 13 info_server_Ex4.js
+// Source of functions for validation: https://www.w3resource.com/javascript/form/javascript-sample-registration-form-validation.php
+
+// validates to make sure that username meets requirements 
+function usernameValidation(usernameLowerCase, return_errors = false) {
+  var letters = /^[0-9a-zA-Z]+$/; // allowable characters 
+  errors = []; // assume no errors at first
+  // check if length is okay; length must be between 4 and 10 characters
+  if (usernameLowerCase.length > 10 || usernameLowerCase.length < 4) {
+    // username doesn't doesn't meet requirements 
+    errors.push('<font color="black">Username must be between 4 and 10 characters long!</font>');
+  }
+  // check if there are only letters and numbers; check if matches the variable letters
+  if (!usernameLowerCase.match(letters)) {
+    // if contain characters that are not defined in letters = error 
+    errors.push('<font color="black">Username can only contain alphanumeric characters only!</font>');
+  }
+
+  return return_errors ? errors : (errors.length == 0);
+}
+
+// validates password; it should be of length 6 characters or greater.
+function passwordValidation(password, return_errors = false) {
+  if (password.length < 6) {
+    errors.push('<font color="black">Password must be at least 6 characters long!</font>')
+  }
+
+  return return_errors ? errors : (errors.length == 0);
+}
+
+// validate email format
+function emailValidation(email, return_errors = false) {
+  var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  if (!email.match(mailformat)) {
+    // doesn't match email format 
+    errors.push('<font color="black">You have entered an invalid email address!</font>');
+  }
+
+  return return_errors ? errors : (errors.length == 0);
+}
+// validate fullname checks whether user name input field is provided with alphabates characters. If not, it displays an alert 
+function fullnameValidation(fullName, return_errors = false) {
+  var letters = /^[A-Za-z]+$/;
+  if (!fullName.match(letters)) {
+    // full name includes character not defined in the variable letters
+    errors.push('<font color="black">Username can only contain letters</font>');
+  }
+
+  return return_errors ? errors : (errors.length == 0);
+}
+
+app.post("/testimonials.html", function (request, response) {
+  let POST = request.body; // grab body of request and save it in POST
+  qstring = querystring.stringify(POST); // stringify or convert POST (login info) to a string
+  testimonialqstring = qstring;
+  var testimonial = POST.testimonial;
+
+  if (typeof POST['submit'] == undefined) {
+    // check if the submit button was pressed.
+    response.redirect("testimonials.html");
+    // redirect back to testimonial page if nothing was submitted 
   } else {
-      response.send("User " + username + " already registered! Try logging in instead!");
+    is_valid = true; // initializing variable is_valid
+    // check if username is valid
+    errs_array = testimonialValidation(testimonial, true);
+    if (errs_array.length != 0) // there are errors in the username
+      is_valid = false; // username is not valid 
+    if (!is_valid) {
+      // there are errors
+      qstring = querystring.stringify(POST); // stringify or convert POST (registration info) to a string
+      registerqstring = qstring;
+      response.redirect("/testimonialredirect3.html?" + testimonialqstring); // there are errors, send back to the register page with the register info stored in query string
+      return;
+    }
+    // user submitted testimonial. test if user is logged in
+
+    //check if valid username exists
+    var username = POST.username; // store what was typed in the username textbox in the variable username
+    var usernameLowerCase = username.toLowerCase(); // convert what was typed in the username textbox to all lower case and store in a variable 
+    if (users_reg_data[usernameLowerCase] != undefined) // check if username exists in user registration data
+    {
+      testimonial_data[usernameLowerCase] = {};  // create empty object 
+      testimonial_data[usernameLowerCase].username = usernameLowerCase; // store the usernameLowerCase value into users_reg_data file under username
+      testimonial_data[usernameLowerCase].fullname = POST.fullname; // store the usernameLowerCase value into users_reg_data file under username
+      testimonial_data[usernameLowerCase].testimonial = POST.testimonial; // store the usernameLowerCase value into users_reg_data file under username
+
+
+
+      var output_data = JSON.stringify(testimonial_data); // stringify users_reg_data
+      fs.writeFileSync(testimonialname, output_data, "utf-8");
+
+      response.redirect("/testimonialredirect1.html"); // registration information is valid; send to invoice with quantity and username info stored in query string
+      return;
+    }
+    else {
+      // username doesn't exist 
+      console.log("username doesn't exist");
+    }
+    response.redirect("/testimonialredirect2.html?" + testimonialqstring); // send to redirect page along with testimonial info saved in query string
   }
 });
 
-// Loads index.html!
+function testimonialValidation(testimonial, return_errors = false) {
+  errors = []; // assume no errors at first
+  // check if length is okay; length must be between 4 and 10 characters
+  if (testimonial.length == 0 ){
+    // username doesn't doesn't meet requirements 
+    errors.push('<font color="black">Username must be between 4 and 10 characters long!</font>');
+  }
+  return return_errors ? errors : (errors.length == 0);
+}
 
 app.use(express.static('./public'));
 app.listen(8080, () => console.log(`listening on port 8080`));
+
