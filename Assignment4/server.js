@@ -262,6 +262,44 @@ function testimonialValidation(testimonial, return_errors = false) {
   return return_errors ? errors : (errors.length == 0);
 }
 
+// Source: Lab 14 exercise 4 
+var modifyschedule = "modify_schedule.json"; // define modifyschedule
+var testimonialname = "testimonial_data.json";
+
+// function to get username from users reg data
+// Source: Lab 14 exercise 4 
+// read, parse, output the contents from user_registration_info.json
+var modify_raw_data = fs.readFileSync(modifyschedule, 'utf-8');
+var modify_data = JSON.parse(modify_raw_data);
+
+// Source: Lab 14 exercise 4 
+app.use(myParser.urlencoded({ extended: true })); // use myparser 
+
+app.post("/schedule2.html", function (request, response) {
+    let POST = request.body; // grab body of request and save it in POST
+    qstring = querystring.stringify(POST); // stringify or convert POST (login info) to a string
+    testimonialqstring = qstring;
+    var modify = POST.modifySchedule;
+
+    if (typeof POST['submit'] == undefined) {
+      // check if the submit button was pressed.
+      response.redirect("testimonials.html");
+      // redirect back to testimonial page if nothing was submitted 
+    } else {
+      //check if valid username exists
+      var hope = POST.modify; // store what was typed in the username textbox in the variable username
+      modify_data = {}; 
+      modify_data.username = hope; 
+     // convert what was typed in the username textbox to all lower case and store in a variable 
+
+        var output_data = JSON.stringify(modify_data); // stringify users_reg_data
+        fs.writeFileSync(modifyschedule, output_data, "utf-8");
+
+        response.redirect("/testimonialredirect1.html"); // registration information is valid; send to invoice with quantity and username info stored in query string
+        return;
+
+    }});
+
 app.use(express.static('./public'));
 app.listen(8080, () => console.log(`listening on port 8080`));
 
