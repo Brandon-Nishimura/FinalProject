@@ -261,7 +261,6 @@ function testimonialValidation(testimonial, return_errors = false) {
   }
   return return_errors ? errors : (errors.length == 0);
 }
-
 // Source: Lab 14 exercise 4 
 var modifyschedule = "modify_schedule.json"; // define modifyschedule
 var testimonialname = "testimonial_data.json";
