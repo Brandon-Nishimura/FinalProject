@@ -69,18 +69,20 @@
                 <h1 style="color: lightcoral">Modifying your schedule.</h1>
             </legend>
             <p>
-                <h1><label>Can't make a certain date? Let us know.</label>
+                <h1><label>Can't make a certain date? Let us know.</label></h1>
                     <select id="ModifyLesson" name = "modify">
                         <option name="NextLesson" value="NextLesson">Next Lesson</option>
                         <option name="NextNextLesson" value="NextNextLesson">Next Week's Lesson</option>
                     </select>
+                    <input type="text" name="username" placeholder="Please enter your username!">
                     <input type="submit" value="Submit" name="registerSubmit"><span id="button_span"></span>
             </p>
         </fieldset>
     </form>
 
     <script>
-        // Source: Port Assignment 1 example 
+        /*
+        // Function: Send data to the appropriate json file
         window.onload = function () {
             let params = (new URL(document.location)).searchParams;
             modify = params.get("modify"); // get value of modify 
@@ -91,6 +93,7 @@
                 // store the value for modify in the modify form in the modify textbox
             }
         }
+        */
     </script>
 
     <div class="smallbreak"></div>
