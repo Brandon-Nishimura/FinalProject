@@ -1,7 +1,6 @@
 <!-- Author: Kristina Tommee-->
 <!--Description: This is the redirect page that the user will be directed to 
-    if they submit a modify schedule form but the username is not in the user reg data. 
-    User will then be taken back to the schedule page-->
+    if they successfully submit a modify schedule form. User will then be taken back to the home page-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,9 +9,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Source of delay redirect: https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_redirect-->
-    <meta http-equiv="Refresh" content="7;url=/schedule.html"> <!-- Will refresh to the page and take user back to schedule page in 7 seconds-->
+    <meta http-equiv="Refresh" content="3;url=/schedule.html"> <!-- Will refresh to the page and take user back to home page in 3 seconds-->
     <link rel="stylesheet" href="style2.css">
-    <title>Schedule Request Submitted</title>
+    <title>Username Not Yours</title>
 
 </head>
 
@@ -20,9 +19,7 @@
 <body>
     <br>
     <br>
-    <h2>Thank you for submitting a schedule modification request! Changes will take up to two business days to process.</h2><br>
-    <h2>Please note that the schedule page will not reflect this update until we accept your request.</h2>
-    <p>You will be automatically redirected back to the schedule page, or you can click the link below.</p>
+    <h2>Password not valid. Please try again!</p>
     <p><a href="/schedule.html">Schedule Page</a></p>  <!-- Has embedded link that will take user back to the home page -->
     <br>
     <br>

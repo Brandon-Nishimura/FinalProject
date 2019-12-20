@@ -11,7 +11,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Schedule</title>
     <link rel="stylesheet" href="style2.css">
-    <script type="text/javascript" src="schedule.js">
 
     </script>
 </head>
@@ -20,7 +19,7 @@
     <script>
 
         console.log(document.cookie);
-        var userOnly = document.cookie.substr(7); // Removes the first seven letters (aka userID=)
+        var userOnly = document.cookie.substr(7); // Removes the first seven letters in the cookie (aka userID=)
         console.log(userOnly);
         // if not logged in and therefore no cookie is set, send alert and take back to home page
         if (userOnly == "") {
@@ -28,9 +27,88 @@
             window.location.replace("/index.html")
         }
 
-        // console.log(document.cookie.color);
+        // Adjusts the cookie to only give the username, and capitalizes the first letter
         var fix = document.cookie.substring(document.cookie.indexOf("=") + 1);
         var username = fix.charAt(0).toUpperCase() + fix.substring(1);
+
+        /* Created by Brandon Nishimura
+        Purpose: Create the schedule page!*/
+
+        // Then, we pull the information we need!
+
+        // Test example day.
+
+        // Hardcode test variables -- remember that in reality we would be assigning students days from our side to prevent, for example, a student changing their lesson time back and forth (which would cause immense administrative headaches). By necessity, all these variables must be hard-coded.
+        var userAday = "friday"
+
+        console.log("userAday: " + userAday)
+
+        // Pull the current time so it can be used for our calculations
+
+        currentTime = new Date();
+        console.log("currentTime: " + currentTime);
+
+        var currentDayNum = currentTime.getDay();
+        console.log("currentDayNum: " + currentDayNum);
+
+        // Convert the user's lesson day into a number
+
+        if (userAday == "sunday") {
+            userLessonDay = 0
+        } else if (userAday == "monday") {
+            userLessonDay = 1
+        } else if (userAday == "tuesday") {
+            userLessonDay = 2
+        } else if (userAday == "wednesday") {
+            userLessonDay = 3
+        } else if (userAday == "thursday") {
+            userLessonDay = 4
+        } else if (userAday == "friday") {
+            userLessonDay = 5
+        } else if (userAday == "saturday") {
+            userLessonDay = 6
+        }
+
+        console.log("userLessonDay: " + userLessonDay)
+
+        // Calculate the days left before the next lesson
+
+        var calcdays = (userLessonDay - currentDayNum);
+        console.log("calcdays: " + calcdays);
+
+        var calcdays2 = (userLessonDay - currentDayNum);
+        console.log("calcdays2: " + calcdays);
+
+        // A numerical solver to ensure there is no zero / negative for the following string
+
+        if (calcdays == 0) {
+            var nextLessonString = "Your next lesson is today!"
+        } else if (calcdays == 1) {
+            var nextLessonString = "Your next lesson is tomorrow!"
+        } else if (calcdays <= -1) {
+            nextLessonNum = calcdays + 8
+            var nextLessonString = "Your next lesson is in " + nextLessonNum + " days!";
+        } else {
+            nextLessonNum = calcdays;
+            var nextLessonString = "Your next lesson is in " + nextLessonNum + " days!";
+        }
+
+        // What will appear on the document: "Your next lesson is in __ days!" But we have exceptions for grammar and functional purposes. 
+
+        console.log(nextLessonString);
+
+        // Create the welcome line!
+
+        /* Generate the next two dates for lessons! This uses operations  
+        to add the new days, then uses a command to turn that new day into a date,
+        then turns that into a string and edits it to clean it up! */
+
+        var nextNextLesson = calcdays + 7;
+        var newDt = new Date();
+        newDt.setDate(newDt.getDate() + nextNextLesson);
+        var oneWeekString = ("Your following lesson is on: " + newDt);
+        var oneWeekSlice = oneWeekString.slice(0, 44);
+        console.log(oneWeekSlice);
 
     </script>
 
@@ -69,39 +147,22 @@
                 <h1 style="color: lightcoral">Modifying your schedule.</h1>
             </legend>
             <p>
-                <h1><label>Can't make the next lesson? Let us know.</label></h1>
+                <h1><label>Can't make the next lesson? Submit a request.</label></h1>
                 <input type="text" name="username" placeholder="Please enter your username!">
-                    <select id="ModifyLesson" name="modify">
-                        <option name="NextLesson" value="NextLesson">Next Lesson</option>
-                    </select>
-                    <input type="submit" value="Submit" name="registerSubmit"><span id="button_span"></span>
+                <input type="password" name="password" placeholder="Please enter your password!">
+                <select id="ModifyLesson" name="modify">
+                    <option name="NextLesson" value="NextLesson">Next Lesson</option>
+                </select>
+                <input type="submit" value="Submit" name="registerSubmit"><span id="button_span"></span>
             </p>
         </fieldset>
     </form>
 
-    <script>
-        /*
-        // Function: Send data to the appropriate json file
-        window.onload = function () {
-            let params = (new URL(document.location)).searchParams;
-            modify = params.get("modify"); // get value of modify 
-            console.log(modify);
-            if (the_user != null) {
-                // there is a value for the_user
-                modifySchedule.modify.value = modify;
-                // store the value for modify in the modify form in the modify textbox
-            }
-        }
-        */
-    </script>
-
     <div class="smallbreak"></div>
     <!-- Standard footer and source code. -->
 
-
     <footer id="main-footer"></footer>
     <script type="text/javascript" src="common.js"></script>
-
 
 </body>
 

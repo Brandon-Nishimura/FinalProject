@@ -32,34 +32,23 @@ app.post("/schedule.html", function (request, response) {
   let POST = request.body; // grab body of request and save it in POST
   console.log(POST);
   let username = POST.username;  // Pull the username from the request
+  let password = POST.password;  // Pull password from request
   let lusername = username.toLowerCase(); 
-  if (users_reg_data[username] == undefined) {  // Test to see if the username is found in the user json file.
-    response.redirect("/modifyredirect.html") // Redirect if they are not a valid user.
+  if (users_reg_data[lusername] == undefined) {  // Test to see if the username is found in the user json file.
+    response.redirect("/modifyredirect.html"); // Redirect if they are not a valid user.
+    console.log(users_reg_data[username].password);
+    if (users_reg_data[lusername].password != password) {
+      response.redirect("/modifyredirect3.html");
+    };
   } else {
     var modify = POST.modify;
-    console.log(modify);
-    // There's only one option for modifying lessons so only one path is necessary from here.
-
-
-
-
-    response.redirect("/schedule.html");
-  }
-
-
-/*
-  let POST = request.body; // grab body of request and save it in POST
-  let sstring = querystring.stringify(POST); // stringify or convert POST (testimonial info) to a string
-  var username = POST.username;
-  var modify = POST.modify;
-  console.log(POST);
-  console.log(username);
-  */
-
-
-
-  // response.redirect("schedule.html?" + sstring) 
-})
+    modify_data[lusername] = {};       // Create empty object
+    modify_data[lusername].username = lusername
+    modify_data[lusername].modify = modify
+    console.log(modify_data[lusername]);
+    console.log(modify_data)
+    response.redirect("/modifyredirect2.html");
+  }})
 
 // Source: Lab 14 exercise 4
 // Process login form POST and redirect to invoice page if ok, back to login page if not
