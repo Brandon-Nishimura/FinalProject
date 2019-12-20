@@ -17,7 +17,7 @@ var testimonialname = "testimonial_data.json";
 var schedulename = "modify_schedule.json"
 
 // Source: Lab 14 exercise 4 
-// read, parse, output the contents from user_registration_info.json
+// read, parse, output the contents from a variety of json files
 var raw_data = fs.readFileSync(filename, 'utf-8');
 var users_reg_data = JSON.parse(raw_data);
 var testimonial_raw_data = fs.readFileSync(testimonialname, 'utf-8');
@@ -30,14 +30,35 @@ app.use(myParser.urlencoded({ extended: true })); // use myparser
 
 app.post("/schedule.html", function (request, response) {
   let POST = request.body; // grab body of request and save it in POST
+  console.log(POST);
+  let username = POST.username;  // Pull the username from the request
+  let lusername = username.toLowerCase(); 
+  if (users_reg_data[username] == undefined) {  // Test to see if the username is found in the user json file.
+    response.redirect("/modifyredirect.html") // Redirect if they are not a valid user.
+  } else {
+    var modify = POST.modify;
+    console.log(modify);
+    // There's only one option for modifying lessons so only one path is necessary from here.
+
+
+
+
+    response.redirect("/schedule.html");
+  }
+
+
+/*
+  let POST = request.body; // grab body of request and save it in POST
   let sstring = querystring.stringify(POST); // stringify or convert POST (testimonial info) to a string
+  var username = POST.username;
+  var modify = POST.modify;
+  console.log(POST);
+  console.log(username);
+  */
 
 
-  //.substr(7);
-  /* schedule_data[UserOnly] = {};
-  schedule_data[UserOnly].nextlesson =  sstring;
-  console.log(schedule_data[username]);*/ 
-  response.redirect("schedule.html?" + sstring) 
+
+  // response.redirect("schedule.html?" + sstring) 
 })
 
 // Source: Lab 14 exercise 4
