@@ -14,41 +14,17 @@ var quantityqstring = "";
 var loginqstring = "";
 var registerqstring = "";
 var testimonialname = "testimonial_data.json";
-var schedulename = "modify_schedule.json"
 
 // Source: Lab 14 exercise 4 
-// read, parse, output the contents from a variety of json files
+// read, parse, output the contents from user_registration_info.json
 var raw_data = fs.readFileSync(filename, 'utf-8');
 var users_reg_data = JSON.parse(raw_data);
 var testimonial_raw_data = fs.readFileSync(testimonialname, 'utf-8');
 var testimonial_data = JSON.parse(testimonial_raw_data);
-var schedule_raw_data = fs.readFileSync(schedulename, 'utf-8');
-var schedule_data = JSON.parse(schedule_raw_data);
+
 
 // Source: Lab 14 exercise 4 
 app.use(myParser.urlencoded({ extended: true })); // use myparser 
-
-app.post("/schedule.html", function (request, response) {
-  let POST = request.body; // grab body of request and save it in POST
-  console.log(POST);
-  let username = POST.username;  // Pull the username from the request
-  let password = POST.password;  // Pull password from request
-  let lusername = username.toLowerCase(); 
-  if (users_reg_data[lusername] == undefined) {  // Test to see if the username is found in the user json file.
-    response.redirect("/modifyredirect.html"); // Redirect if they are not a valid user.
-    console.log(users_reg_data[username].password);
-    if (users_reg_data[lusername].password != password) {
-      response.redirect("/modifyredirect3.html");
-    };
-  } else {
-    var modify = POST.modify;
-    modify_data[lusername] = {};       // Create empty object
-    modify_data[lusername].username = lusername
-    modify_data[lusername].modify = modify
-    console.log(modify_data[lusername]);
-    console.log(modify_data)
-    response.redirect("/modifyredirect2.html");
-  }})
 
 // Source: Lab 14 exercise 4
 // Process login form POST and redirect to invoice page if ok, back to login page if not
@@ -298,33 +274,46 @@ var modify_data = JSON.parse(modify_raw_data);
 // Source: Lab 14 exercise 4 
 app.use(myParser.urlencoded({ extended: true })); // use myparser 
 
+// Used when user is trying to modify their schedule
 app.post("/schedule.html", function (request, response) {
   let POST = request.body; // grab body of request and save it in POST
   qstring = querystring.stringify(POST); // stringify or convert POST (login info) to a string
-
   if (typeof POST['submit'] == undefined) {
     // check if the submit button was pressed.
-    response.redirect("index.html");
-    // redirect back to home page if nothing was submitted 
+    response.redirect("schedule.html");
+    // redirect back to schedule page if nothing was submitted 
   } else {
     //check if valid username exists
     var username = POST.username; // store what was typed in the username textbox in the variable username
     var usernameLowerCase = username.toLowerCase(); // convert what was typed in the username textbox to all lower case and store in a variable 
     if (users_reg_data[usernameLowerCase] != undefined) // check if username exists in user registration data
     {
-      modify_data[usernameLowerCase] = {};  // create empty object 
-      var mod = POST.modify; // store what was typed in the modify textbox in the variable hope
-      modify_data[usernameLowerCase].username = usernameLowerCase; // store the usernameLowerCase value into testimonial_data.json file under username
-      modify_data[usernameLowerCase].time = mod; // store the usernameLowerCase value into testimonial_data.json file under username
+      if (POST.password == users_reg_data[usernameLowerCase].password) // the password correctly corresponds to the defined username in the registration data
+      {
+        modify_data[usernameLowerCase] = {};  // create empty object 
+        modify_data[usernameLowerCase].username = usernameLowerCase; // store the usernameLowerCase value into modify_data.json file under username
+        var mod = POST.modify; // store what was typed in the modify textbox in the variable mod
+        modify_data[usernameLowerCase].time = mod; // store the modify value into modify_schedule.json file under time
 
 
-      var output_data = JSON.stringify(modify_data); // stringify users_reg_data
-      fs.writeFileSync(modifyschedule, output_data, "utf-8");
+        var output_data = JSON.stringify(modify_data); // stringify users_reg_data
+        fs.writeFileSync(modifyschedule, output_data, "utf-8");
 
-      response.redirect("/modifyredirect.html"); // modify information is valid; send successful submission message
-      return;
+        response.redirect("/modifyredirect2.html"); // modify information is valid; send successful submission message
+        return;
+      }
+      else {
+        // username exists in user registration data but password is incorrect
 
+        response.redirect("/modifyredirect3.html"); // send to a redirect page along with username info saved in query string
+        return;
+      }
     }
+    else {
+      // username doesn't exist 
+      console.log("username doesn't exist");
+    }
+    response.redirect("/modifyredirect.html");
   }
 });
 
