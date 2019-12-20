@@ -290,7 +290,7 @@ app.post("/testimonials.html", function (request, response) {
 function testimonialValidation(testimonial, return_errors = false) {
   errors = []; // assume no errors at first
   // check if anything was input into the testimonial textbox
-  if (testimonial.length == 0 ){
+  if (testimonial.length == 0) {
     // testimonial doesn't doesn't meet requirements 
     errors.push('<font color="black">Username must be greater than 0 characters long!</font>');
   }
@@ -309,28 +309,35 @@ var modify_data = JSON.parse(modify_raw_data);
 // Source: Lab 14 exercise 4 
 app.use(myParser.urlencoded({ extended: true })); // use myparser 
 
-app.post("/schedule2.html", function (request, response) {
-    let POST = request.body; // grab body of request and save it in POST
-    qstring = querystring.stringify(POST); // stringify or convert POST (login info) to a string
+app.post("/schedule.html", function (request, response) {
+  let POST = request.body; // grab body of request and save it in POST
+  qstring = querystring.stringify(POST); // stringify or convert POST (login info) to a string
 
-    if (typeof POST['submit'] == undefined) {
-      // check if the submit button was pressed.
-      response.redirect("index.html");
-      // redirect back to home page if nothing was submitted 
-    } else {
-      
-      var hope = POST.modify; // store what was typed in the modify textbox in the variable hope
-      modify_data = {}; 
-      modify_data.username = hope; // store the modify value into modify_schedule.json file under username
-     
+  if (typeof POST['submit'] == undefined) {
+    // check if the submit button was pressed.
+    response.redirect("index.html");
+    // redirect back to home page if nothing was submitted 
+  } else {
+    //check if valid username exists
+    var username = POST.username; // store what was typed in the username textbox in the variable username
+    var usernameLowerCase = username.toLowerCase(); // convert what was typed in the username textbox to all lower case and store in a variable 
+    if (users_reg_data[usernameLowerCase] != undefined) // check if username exists in user registration data
+    {
+      modify_data[usernameLowerCase] = {};  // create empty object 
+      var mod = POST.modify; // store what was typed in the modify textbox in the variable hope
+      modify_data[usernameLowerCase].username = usernameLowerCase; // store the usernameLowerCase value into testimonial_data.json file under username
+      modify_data[usernameLowerCase].time = mod; // store the usernameLowerCase value into testimonial_data.json file under username
 
-        var output_data = JSON.stringify(modify_data); // stringify users_reg_data
-        fs.writeFileSync(modifyschedule, output_data, "utf-8");
 
-        response.redirect("/modifyredirect.html"); // modify information is valid; send successful submission message
-        return;
+      var output_data = JSON.stringify(modify_data); // stringify users_reg_data
+      fs.writeFileSync(modifyschedule, output_data, "utf-8");
 
-    }});
+      response.redirect("/modifyredirect.html"); // modify information is valid; send successful submission message
+      return;
+
+    }
+  }
+});
 
 app.use(express.static('./public'));
 app.listen(8080, () => console.log(`listening on port 8080`));
