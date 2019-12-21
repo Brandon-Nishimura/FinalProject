@@ -1,6 +1,15 @@
 <!-- Author:  Brandon Nishimura-->
 <!--Description: This is the schedule page that allows users who have an account with us to see when their next lesson in.
-    User must be logged in before viewing the schedue page -->
+    User must be logged in before viewing the schedue page 
+
+    IMPORTANT NOTES: Current page is hard-coded for the student 'Thursday' (excepting the username personalization). You can not test new
+    students since new students will be *assigned* a day for lessons. That must be hard-coded in by an administrator as per our system.
+
+    However, system would not be challenging to expand to other students. This is just a note to alert you that this system is not automatic
+    and requires administrative input to function. 
+
+    This also applies to the modification function, which is a REQUEST rather than an automated system.
+-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,8 +47,12 @@
 
         // Test example day.
 
-        // Hardcode test variables -- remember that in reality we would be assigning students days from our side to prevent, for example, a student changing their lesson time back and forth (which would cause immense administrative headaches). By necessity, all these variables must be hard-coded.
-        var userAday = "thursday"
+        /* Hardcode test variables -- remember that in reality we would be assigning students days from our side to prevent, for example, a student changing 
+        their lesson time back and forth (which would cause immense administrative headaches). By necessity, all these variables must be hard-coded. So here is an example user 'thursday'. */
+        
+        // optimally, we'd assign every user a day and put their day into an array and have that index number be a unique student identifier , but we're only using 1 in our example for now so that isn't needed
+
+        var userAday = "thursday";
 
         console.log("userAday: " + userAday)
 
@@ -137,24 +150,7 @@
     </div>
     <div class="smallbreak"></div>
 
-    <!-- Creating a form for the user to modify their schedule. -->
-    <form name="modifySchedule" action="" method="POST">
-        <fieldset>
-            <legend>
-                <h1 style="color: lightcoral">Modifying your schedule.</h1>
-            </legend>
-            <p>
-                <h1><label>Can't make the next lesson? Submit a request.</label></h1>
-                <input type="text" name="username" placeholder="Please enter your username!">
-                <input type="password" name="password" placeholder="Please enter your password!">
-                <select id="ModifyLesson" name="cantmake">
-                    <option name="NextLesson" value="NextLesson">Next Lesson</option>
-                    <option name="NextNextLesson" value="NextNextLesson">Next Next Lesson</option>
-                </select>
-                <input type="submit" value="Submit" name="registerSubmit"><span id="button_span"></span>
-            </p>
-        </fieldset>
-    </form>
+    <a href="/modify" class="button1">Submit a schedule modification request!</a>
 
     <div class="smallbreak"></div>
     <!-- Standard footer and source code. -->

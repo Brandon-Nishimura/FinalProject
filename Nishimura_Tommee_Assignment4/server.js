@@ -264,29 +264,180 @@ function testimonialValidation(testimonial, return_errors = false) {
 
 // Process the schedule page, validate information, and move it into the JSON file.
 
-app.post("/schedule.html", function (request, response) {
-  let POST = request.body; // grab body of request and save it in POST
-  console.log(POST);
-  let username = POST.username;  // Pull the username from the request
-  let usernameLowerCase = username.toLowerCase(); 
-  if (users_reg_data[usernameLowerCase] == undefined) {  // Test to see if the username is found in the user json file.
-    response.redirect("/modifyredirect.html"); // Redirect if they are not a valid user.
-  } else if (POST.password != users_reg_data[usernameLowerCase].password) {
-      response.redirect("/modifyredirect3.html");
+/*
+function userID(request, response) {
+  console.log(request.cookie);
+  var userOnly = request.cookies.substr(7); // Removes the first seven letters in the cookie (aka userID=)
+  console.log(userOnly);
+}
+
+function userIDPrint(document) {
+  userID();
+  var fix = request.cookies.substring(request.cookies.indexOf("=") + 1);
+  var username = fix.charAt(0).toUpperCase() + fix.substring(1);
+}
+
+function userLoginCheck(document, window) {
+  userID();
+  // if not logged in and therefore no cookie is set, send alert and take back to home page
+  if (userOnly == "") {
+    alert("You are not authorized to view this page. Please log in to view the schedule!")
+    window.location.replace("/index.html")
+  }
+}
+*/
+
+function calcDay(document) {
+  userIDPrint();
+  userLoginCheck();
+  /* Created by Brandon Nishimura
+  Purpose: Create the schedule page!*/
+
+  // Then, we pull the information we need!
+
+  // Test example day.
+
+  // Hardcode test variables -- remember that in reality we would be assigning students days from our side to prevent, for example, a student changing their lesson time back and forth (which would cause immense administrative headaches). By necessity, all these variables must be hard-coded.
+  var userAday = "thursday"
+
+  console.log("userAday: " + userAday)
+
+  // Pull the current time so it can be used for our calculations
+
+  let currentTime = new Date();
+  console.log("currentTime: " + currentTime);
+
+  var currentDayNum = currentTime.getDay();
+  console.log("currentDayNum: " + currentDayNum);
+
+  // Convert the user's lesson day into a number
+
+  if (userAday == "sunday") {
+    userLessonDay = 0
+  } else if (userAday == "monday") {
+    userLessonDay = 1
+  } else if (userAday == "tuesday") {
+    userLessonDay = 2
+  } else if (userAday == "wednesday") {
+    userLessonDay = 3
+  } else if (userAday == "thursday") {
+    userLessonDay = 4
+  } else if (userAday == "friday") {
+    userLessonDay = 5
+  } else if (userAday == "saturday") {
+    userLessonDay = 6
+  }
+
+  console.log("userLessonDay: " + userLessonDay)
+
+  // Calculate the days left before the next lesson
+
+  var calcdays = (userLessonDay - currentDayNum);
+  console.log("calcdays: " + calcdays);
+
+  // A numerical solver to ensure there is no zero / negative for the following string
+
+  if (calcdays == 0) {
+    var nextLessonString = "Your next lesson is today!"
+  } else if (calcdays == 1) {
+    var nextLessonString = "Your next lesson is tomorrow!"
+  } else if (calcdays <= -1) {
+    nextLessonNum = calcdays + 8
+    var nextLessonString = "Your next lesson is in " + nextLessonNum + " days!";
   } else {
-    var cantmake = POST.cantmake;
-    let time = Date(); // Records time of request
-    reqtime = time.toString();  
-    schedule_data[usernameLowerCase] = {};       // Create empty object, and fill the attributes with the submitted data
-    schedule_data[usernameLowerCase].username = usernameLowerCase;
-    schedule_data[usernameLowerCase].cantmake = cantmake;
-    schedule_data[usernameLowerCase].request_time = reqtime;
-    console.log(schedule_data[usernameLowerCase]);
-    var output_data = JSON.stringify(schedule_data); // stringify users_reg_data
-    var modifyschedule = "modify_schedule.json"; // define modifyschedule
-    fs.writeFileSync(modifyschedule, output_data, "utf-8");
-    response.redirect("/modifyredirect2.html");
-  }});
+    nextLessonNum = calcdays;
+    var nextLessonString = "Your next lesson is in " + nextLessonNum + " days!";
+  }
+
+  // What will appear on the document: "Your next lesson is in __ days!" But we have exceptions for grammar and functional purposes. 
+
+  console.log(nextLessonString);
+
+  // Create the welcome line!
+
+  /* Generate the next two dates for lessons! This uses operations  
+  to add the new days, then uses a command to turn that new day into a date,
+  then turns that into a string and edits it to clean it up! */
+
+  var nextNextLesson = calcdays + 7;
+  var newDt = new Date();
+  newDt.setDate(newDt.getDate() + nextNextLesson);
+  var oneWeekString = ("Date of next lesson: " + newDt);
+  var oneWeekSlice = oneWeekString.slice(0, 36);
+  console.log(oneWeekSlice);
+}
+
+// This generates our modify schedule page. Although you can bypass the schedule login validation by putting /modify directly in, you still need login credentials to do anything on this page.
+
+app.get("/modify", function (request, response) {
+  let str = `
+  <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Schedule</title>
+    <link rel="stylesheet" href="style2.css">
+
+    </script>
+</head>
+  <body>
+  <header id="main-header"></header>
+    <form name="modifySchedule" action="" method="POST">
+      <fieldset>
+        <legend>
+          <h1 style="color: lightcoral">Modifying your schedule.</h1>
+        </legend>
+        <p>
+          <h1><label>Can't make the next lesson? Submit a request.</label></h1>
+          <input type="text" name="username" placeholder="Please enter your username!">
+            <input type="password" name="password" placeholder="Please enter your password!">
+              <select id="ModifyLesson" name="cantmake">
+                <option name="NextLesson" value="NextLesson">Next Lesson</option>
+                <option name="NextNextLesson" value="NextNextLesson">Next Next Lesson</option>
+              </select>
+              <input type="submit" value="Submit" name="registerSubmit"><span id="button_span"></span>
+            </p>
+        </fieldset>
+    </form>
+  </body>
+  <div class="smallbreak"></div>
+    <!-- Standard footer and source code. -->
+
+    <footer id="main-footer"></footer>
+    <script type="text/javascript" src="common.js"></script>
+  `;
+  response.send(str);
+}),
+
+  // Process the modification page!
+
+  app.post("/modify", function (request, response) {
+    let POST = request.body; // grab body of request and save it in POST
+    console.log(POST);
+    let username = POST.username;  // Pull the username from the request
+    let usernameLowerCase = username.toLowerCase();
+    if (users_reg_data[usernameLowerCase] == undefined) {  // Test to see if the username is found in the user json file.
+      response.redirect("/modifyredirect.html"); // Redirect if they are not a valid user.
+    } else if (POST.password != users_reg_data[usernameLowerCase].password) {
+      response.redirect("/modifyredirect3.html");
+    } else {
+      var cantmake = POST.cantmake;
+      let time = Date(); // Records time of request
+      reqtime = time.toString();
+      schedule_data[usernameLowerCase] = {};       // Create empty object, and fill the attributes with the submitted data
+      schedule_data[usernameLowerCase].username = usernameLowerCase;
+      schedule_data[usernameLowerCase].cantmake = cantmake;
+      schedule_data[usernameLowerCase].request_time = reqtime;
+      console.log(schedule_data[usernameLowerCase]);
+      var output_data = JSON.stringify(schedule_data); // stringify users_reg_data
+      var modifyschedule = "modify_schedule.json"; // define modifyschedule
+      fs.writeFileSync(modifyschedule, output_data, "utf-8");
+      response.redirect("/modifyredirect2.html");
+    }
+  });
 
 app.use(express.static('./public'));
 app.listen(8080, () => console.log(`listening on port 8080`));
