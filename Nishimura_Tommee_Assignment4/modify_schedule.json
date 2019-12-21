@@ -1,6 +1,7 @@
 {
-    "itm352": {
-        "username": "itm352",
-        "time": "NextNextLesson"
+    "thursday": {
+        "username": "thursday",
+        "cantmake": "NextLesson",
+        "request_time": "Fri Dec 20 2019 13:44:19 GMT-1000 (Hawaii-Aleutian Standard Time)"
     }
 }

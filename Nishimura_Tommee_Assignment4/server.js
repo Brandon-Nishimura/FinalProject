@@ -14,14 +14,16 @@ var quantityqstring = "";
 var loginqstring = "";
 var registerqstring = "";
 var testimonialname = "testimonial_data.json";
+var schedulename = "modify_schedule.json"
 
 // Source: Lab 14 exercise 4 
-// read, parse, output the contents from user_registration_info.json
+// read, parse, output the contents from a variety of json files
 var raw_data = fs.readFileSync(filename, 'utf-8');
 var users_reg_data = JSON.parse(raw_data);
 var testimonial_raw_data = fs.readFileSync(testimonialname, 'utf-8');
 var testimonial_data = JSON.parse(testimonial_raw_data);
-
+var schedule_raw_data = fs.readFileSync(schedulename, 'utf-8');
+var schedule_data = JSON.parse(schedule_raw_data);
 
 // Source: Lab 14 exercise 4 
 app.use(myParser.urlencoded({ extended: true })); // use myparser 
@@ -78,7 +80,7 @@ app.post("/register.html", function (request, response) {
   var email = POST.email; // store what was typed in the email textbox in the variable email
   var fullname = POST.fullname; // store what was typed in the fullname textbox in the variable fullname
   var usernameqstring = "&user=" + username; // creates query string for username
-  var d = Date();
+  var d = Date(); // Records time of registration
   a = d.toString();
 
 
@@ -261,61 +263,32 @@ function testimonialValidation(testimonial, return_errors = false) {
   }
   return return_errors ? errors : (errors.length == 0);
 }
-// Source: Lab 14 exercise 4 
-var modifyschedule = "modify_schedule.json"; // define modifyschedule
-var testimonialname = "testimonial_data.json";
 
-// function to get username from users reg data
-// Source: Lab 14 exercise 4 
-// read, parse, output the contents from user_registration_info.json
-var modify_raw_data = fs.readFileSync(modifyschedule, 'utf-8');
-var modify_data = JSON.parse(modify_raw_data);
+// Process the schedule page, validate information, and move it into the JSON file.
 
-// Source: Lab 14 exercise 4 
-app.use(myParser.urlencoded({ extended: true })); // use myparser 
-
-// Used when user is trying to modify their schedule
 app.post("/schedule.html", function (request, response) {
   let POST = request.body; // grab body of request and save it in POST
-  qstring = querystring.stringify(POST); // stringify or convert POST (login info) to a string
-  if (typeof POST['submit'] == undefined) {
-    // check if the submit button was pressed.
-    response.redirect("schedule.html");
-    // redirect back to schedule page if nothing was submitted 
+  console.log(POST);
+  let username = POST.username;  // Pull the username from the request
+  let usernameLowerCase = username.toLowerCase(); 
+  if (users_reg_data[usernameLowerCase] == undefined) {  // Test to see if the username is found in the user json file.
+    response.redirect("/modifyredirect.html"); // Redirect if they are not a valid user.
+  } else if (POST.password != users_reg_data[usernameLowerCase].password) {
+      response.redirect("/modifyredirect3.html");
   } else {
-    //check if valid username exists
-    var username = POST.username; // store what was typed in the username textbox in the variable username
-    var usernameLowerCase = username.toLowerCase(); // convert what was typed in the username textbox to all lower case and store in a variable 
-    if (users_reg_data[usernameLowerCase] != undefined) // check if username exists in user registration data
-    {
-      if (POST.password == users_reg_data[usernameLowerCase].password) // the password correctly corresponds to the defined username in the registration data
-      {
-        modify_data[usernameLowerCase] = {};  // create empty object 
-        modify_data[usernameLowerCase].username = usernameLowerCase; // store the usernameLowerCase value into modify_data.json file under username
-        var mod = POST.modify; // store what was typed in the modify textbox in the variable mod
-        modify_data[usernameLowerCase].time = mod; // store the modify value into modify_schedule.json file under time
-
-
-        var output_data = JSON.stringify(modify_data); // stringify users_reg_data
-        fs.writeFileSync(modifyschedule, output_data, "utf-8");
-
-        response.redirect("/modifyredirect2.html"); // modify information is valid; send successful submission message
-        return;
-      }
-      else {
-        // username exists in user registration data but password is incorrect
-
-        response.redirect("/modifyredirect3.html"); // send to a redirect page along with username info saved in query string
-        return;
-      }
-    }
-    else {
-      // username doesn't exist 
-      console.log("username doesn't exist");
-    }
-    response.redirect("/modifyredirect.html");
-  }
-});
+    var cantmake = POST.cantmake;
+    let time = Date(); // Records time of request
+    reqtime = time.toString();  
+    schedule_data[usernameLowerCase] = {};       // Create empty object, and fill the attributes with the submitted data
+    schedule_data[usernameLowerCase].username = usernameLowerCase;
+    schedule_data[usernameLowerCase].cantmake = cantmake;
+    schedule_data[usernameLowerCase].request_time = reqtime;
+    console.log(schedule_data[usernameLowerCase]);
+    var output_data = JSON.stringify(schedule_data); // stringify users_reg_data
+    var modifyschedule = "modify_schedule.json"; // define modifyschedule
+    fs.writeFileSync(modifyschedule, output_data, "utf-8");
+    response.redirect("/modifyredirect2.html");
+  }});
 
 app.use(express.static('./public'));
 app.listen(8080, () => console.log(`listening on port 8080`));

@@ -39,7 +39,7 @@
         // Test example day.
 
         // Hardcode test variables -- remember that in reality we would be assigning students days from our side to prevent, for example, a student changing their lesson time back and forth (which would cause immense administrative headaches). By necessity, all these variables must be hard-coded.
-        var userAday = "friday"
+        var userAday = "thursday"
 
         console.log("userAday: " + userAday)
 
@@ -76,9 +76,6 @@
         var calcdays = (userLessonDay - currentDayNum);
         console.log("calcdays: " + calcdays);
 
-        var calcdays2 = (userLessonDay - currentDayNum);
-        console.log("calcdays2: " + calcdays);
-
         // A numerical solver to ensure there is no zero / negative for the following string
 
         if (calcdays == 0) {
@@ -106,8 +103,8 @@
         var nextNextLesson = calcdays + 7;
         var newDt = new Date();
         newDt.setDate(newDt.getDate() + nextNextLesson);
-        var oneWeekString = ("Your following lesson is on: " + newDt);
-        var oneWeekSlice = oneWeekString.slice(0, 44);
+        var oneWeekString = ("Date of next lesson: " + newDt);
+        var oneWeekSlice = oneWeekString.slice(0, 36);
         console.log(oneWeekSlice);
 
     </script>
@@ -150,7 +147,7 @@
                 <h1><label>Can't make the next lesson? Submit a request.</label></h1>
                 <input type="text" name="username" placeholder="Please enter your username!">
                 <input type="password" name="password" placeholder="Please enter your password!">
-                <select id="ModifyLesson" name="modify">
+                <select id="ModifyLesson" name="cantmake">
                     <option name="NextLesson" value="NextLesson">Next Lesson</option>
                     <option name="NextNextLesson" value="NextNextLesson">Next Next Lesson</option>
                 </select>
