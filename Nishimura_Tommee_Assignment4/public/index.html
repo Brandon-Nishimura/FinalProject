@@ -11,8 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style2.css">
+    <script type="text/javascript" src=index.js></script>
     <title>An Octave Higher Home Page</title>
-
+    
     <script>
 
 
@@ -20,13 +21,24 @@
 
         function welcomeMsg() {
             console.log(document.cookie);
+
+            // Start by pulling out the username from the cookie.
+
             var name = document.cookie;
             console.log(name);
             let undercase = document.cookie.substr(7); // Removes the first seven letters (aka userID=)
             var userOnly = undercase.charAt(0).toUpperCase() + undercase.substring(1);
+
+            // Now for their start date.
+
+            let currentTime = new Date();
+            let currentDayNum = currentTime.getDay();
+            // let startDate = users_reg_data[usernameLowerCase].registrationDate
+            // console.log(startDate);
             if (userOnly != "") {
                 document.write(`
-                Welcome, ${userOnly}!`);
+                Welcome, ${userOnly}!
+                `);
             } else {
                 document.write("Welcome, new user!");
             }
@@ -48,8 +60,9 @@
 
         <div class="index-header">
 
-            <script>welcomeMsg();</script>
+            <script>welcomeMsg();
 
+        </script>
             <br>
             <br>
             Home Page

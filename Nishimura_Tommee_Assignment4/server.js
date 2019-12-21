@@ -83,7 +83,6 @@ app.post("/register.html", function (request, response) {
   var d = Date(); // Records time of registration
   a = d.toString();
 
-
   is_valid = true; // initializing variable is_valid
   // check if username is valid
   errs_array = usernameValidation(usernameLowerCase, true);
@@ -129,7 +128,6 @@ app.post("/register.html", function (request, response) {
     users_reg_data[usernameLowerCase].password = POST.password; // store the passoword value into users_reg_data file under password
     users_reg_data[usernameLowerCase].full_name = POST.fullname; // store the full name value into users_reg_data file under full name
     users_reg_data[usernameLowerCase].email = POST.email; // store the email value into users_reg_data file under email
-    users_reg_data[usernameLowerCase].color = POST.color;
     users_reg_data[usernameLowerCase].registrationDate = a;
     response.cookie('userID', usernameLowerCase) // Add a cookie
 
