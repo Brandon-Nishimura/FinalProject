@@ -4,6 +4,7 @@ and replace whatever is inside it with this.
 
 */
 
+//  Common header used on all pages
 var header = document.getElementById('main-header');
 console.log(header);
 header.innerHTML = (`
@@ -29,6 +30,7 @@ header.innerHTML = (`
     </div>
     `);
 
+// Common footer used on all pages
 var footer = document.getElementById('main-footer');
 console.log(footer);
 footer.innerHTML = (`
