@@ -264,6 +264,8 @@ function testimonialValidation(testimonial, return_errors = false) {
   return return_errors ? errors : (errors.length == 0);
 }
 
+// Process the schedule page, validate information, and move it into the JSON file.
+
 app.post("/schedule.html", function (request, response) {
   let POST = request.body; // grab body of request and save it in POST
   console.log(POST);
