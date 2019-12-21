@@ -4,7 +4,6 @@
         "password": "monday",
         "full_name": "mondaystudent",
         "email": "monday@gmail.com",
-        "color": "#e66465",
         "date": "Wed Dec 11 2019 15:57:31 GMT-1000 (Hawaii-Aleutian Standard Time)",
         "day": "monday"
     },
@@ -13,7 +12,6 @@
         "password": "thursday",
         "full_name": "thursdaystudent",
         "email": "thursday@yahoo.com",
-        "color": "#e66465",
         "registrationDate": "Fri Dec 13 2019 11:57:43 GMT-1000 (Hawaii-Aleutian Standard Time)",
         "day": "thursday"
     },
@@ -22,7 +20,6 @@
         "password": "saturday",
         "full_name": "saturdaystudent",
         "email": "saturday@gmail.com",
-        "color": "#e66465",
         "registrationDate": "Fri Dec 13 2019 12:17:11 GMT-1000 (Hawaii-Aleutian Standard Time)",
         "day": "thursday"
     },
@@ -31,7 +28,6 @@
         "password": "grader",
         "full_name": "itm352",
         "email": "a@gmail.com",
-        "color": "#e66465",
         "registrationDate": "Fri Dec 13 2019 11:54:21 GMT-1000 (Hawaii-Aleutian Standard Time)",
         "day": "thursday"
     },
@@ -40,7 +36,6 @@
         "password": "kristina",
         "full_name": "kristina t",
         "email": "kristina@gmail.com",
-        "color": "#e69cda",
         "registrationDate": "Wed Dec 18 2019 21:22:54 GMT-1000 (Hawaii-Aleutian Standard Time)"
     },
     "brandon": {
@@ -48,7 +43,6 @@
         "password": "brandon",
         "full_name": "brandon n",
         "email": "brandon@gmail.com",
-        "color": "#e66465",
         "registrationDate": "Wed Dec 18 2019 21:25:20 GMT-1000 (Hawaii-Aleutian Standard Time)"
     }
 }
